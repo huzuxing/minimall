@@ -1,0 +1,118 @@
+@charset "utf-8";
+/**
+ * 1200+
+ * 内容宽度：1190px
+ * 页面内容居中
+ * 匹配默认样式
+ */
+
+body{background-color: #ededed;font-family: "微软雅黑";}
+.page-container{width:10rem;margin: 0 auto;}
+/*选项*/
+.tabframe{height: 1.09375rem;line-height:1.09375rem;display:flex;background-color:#fff;justify-content:space-around;}
+.tabframe a{font-size:0.46875rem;color:#333;display:inline-block;position: relative;width:50%;text-align: center;}
+.tabframe a.selected{color:#05af10;}
+.tabframe a.selected:after{height:2px;content:"";border-bottom:2px solid #05af10;position: absolute;width:50%;left:0;bottom: 0;left: 50%;transform: translateX(-50%);}
+
+/*=====================购买房卡===========================*/
+.btn-buy{font-size:0.53125rem;color:#fff;background-color:#05af10;width:9.21875rem;height:1.0625rem;line-height:1.0625rem;text-align:center;margin:1.25rem auto 0;display:block;border-radius:5px;}
+.page-card{background-color:#fff;padding: 0 0.390625rem 0.703125rem;margin-top:0.3125rem;}
+.page-card p.recharge-info{padding-top:0.625rem;font-size:0.375rem;color:#333;}
+.page-card p.recharge-info em{color:#ff5c00;font-weight: bold;}
+
+.page-container .card{display:flex;justify-content: space-between;flex-wrap: wrap;margin-top:0.125rem;}
+.page-container .card a{color:#666666;font-size:0.46875rem;width:2.8125rem;margin-top: 0.4375rem;height:1.34375rem;display: flex; text-align: center;border-radius: 5px;position: relative;display: flex;flex-wrap: wrap;justify-content: center;align-content: center;}
+.page-container .card a span{display:block;font-size:0.375rem;width:100%;color:#999;}
+.page-container .card a em{background: url(../images/card-ico.png) no-repeat right top; position: absolute;height:0.796875rem;width:0.796875rem;background-size: cover;right:0;top:0;}
+.page-container .card a.card-item{border: 1px solid #d2d2d2;}
+.page-container .card a.card-selected{border: 1px solid #05af10;color:#05af10;}
+.page-container .card a.card-selected span{color:#05af10;}
+
+.page-container .send-card{background-color:#05af10;color:#fff;width:9.21875rem;text-align:center;margin:1.171875rem auto 0;font-size:0.53125rem;height:1.09375rem;line-height:1.09375rem;border-radius: 5px;border:0 none;display:block;}
+
+/*=====================充值记录===========================*/
+/*一级*/
+ul.tree1{background-color:#ededed;}
+ul.tree1 li{line-height:0.625rem;}
+ul.tree1 li.sub-tree1{background-color:#fff;margin-top:0.3125rem;padding-top:0.3125rem;}
+ul.tree1 li.sub-tree1 i,ul.tree1 li.sub-tree1 span{font-size:0.375rem;}
+ul.tree1 li.sub-tree1 i{padding-left:0.46875rem;font-style:normal;color:#333;}
+ul.tree1 li.sub-tree1 span{float: right;padding-right: 0.46875rem;color:#05af10;}
+
+/*二级*/
+ul.tree1 li.sub-tree1 ul.tree2{background-color:#fff;margin-left:0.46875rem;margin-right:0.46875rem;border-top:1px solid #d2d2d2;margin-top:0.3125rem;padding-top:0.109375rem;}
+ul.tree1 li.sub-tree1 ul.tree2 li{font-size:0.4375rem;display: table;width:100%;vertical-align: middle;padding-bottom:0.25rem;padding-top:0.002812rem;}
+ul.tree1 li.sub-tree1 ul.tree2 li:last-child{border-bottom:none;}
+ul.tree1 li.sub-tree1 ul.tree2 li em{font-size:0.375rem;display: table-cell;vertical-align: middle;color:#666;width:2.5rem;}
+ul.tree1 li.sub-tree1 ul.tree2 li time{font-size:0.375rem;display: table-cell;vertical-align: middle;color:#666;}
+
+/*=====================充值成功===========================*/
+.page-recharge{background-color:#fff;padding-bottom:0.625rem;}
+.recharge-recorde{text-align:center;margin-bottom: 0.390625rem;}
+.page-recharge img{width:1.875rem;height:1.875rem;border-radius:10px;margin:0.78125rem auto 0.46875rem;}
+.recharge-success{font-size:0.46875rem;color:#05af10;}
+.page-recharge p.recharge-info{padding-top:0.3125rem;font-size:0.375rem;color:#333;margin-left: 2.96875rem;}
+.page-recharge p.recharge-info em{color:#ff5c00;}
+/**
+ * 1023-1200
+ * 内容宽度990
+ * 页面内容居中
+ */
+@media only screen and (max-width: 1200px) {
+
+}
+
+
+/**
+ * 768-1024
+ * 内容宽度740
+ * 两边间距14,页面内容居中
+ */
+
+@media only screen and (max-width: 1024px) {
+
+}
+
+/**
+ * ipad竖屏：(orientation:portrait)
+ * ipad横屏：(orientation:landscape)
+ */
+
+@media only screen and (width: 768px) and (orientation: portrait) {
+
+}
+
+
+/**
+ * 640-767
+ * 内容宽度590
+ * 两边间距25，页面内容居中
+ */
+
+@media only screen and (max-width: 767px) {
+
+
+
+}
+/**
+ *480-639
+ *两边间距25，页面内容居中
+ */
+
+@media only screen and (max-width: 639px) {
+
+}
+/**
+ *360-479
+ * 两边间距25，页面内容居中
+ */
+@media only screen and (max-width: 479px) {
+
+}
+/**
+ *320-359
+ * 按百分比缩放，最小缩放到320
+ */
+@media only screen and (max-width: 359px) {
+
+}

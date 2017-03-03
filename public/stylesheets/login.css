@@ -1,0 +1,75 @@
+@charset "utf-8";
+/**
+ * 1200+
+ * 内容宽度：1190px
+ * 页面内容居中
+ * 匹配默认样式
+ */
+
+/*未登录*/
+.login .logo{margin:1.515625rem auto 0.828125rem;width:4.765625rem;height: 1.0rem;}
+.login .logo img{width:100%;height:100%;}
+.login a{font-size: 0.46875rem;text-align: center;color: #333333;display:block;}
+/**
+ * 1023-1200
+ * 内容宽度990
+ * 页面内容居中
+ */
+@media only screen and (max-width: 1200px) {
+
+}
+
+
+/**
+ * 768-1024
+ * 内容宽度740
+ * 两边间距14,页面内容居中
+ */
+
+@media only screen and (max-width: 1024px) {
+
+}
+
+/**
+ * ipad竖屏：(orientation:portrait)
+ * ipad横屏：(orientation:landscape)
+ */
+
+@media only screen and (width: 768px) and (orientation: portrait) {
+
+}
+
+
+/**
+ * 640-767
+ * 内容宽度590
+ * 两边间距25，页面内容居中
+ */
+
+@media only screen and (max-width: 767px) {
+
+
+
+}
+/**
+ *480-639
+ *两边间距25，页面内容居中
+ */
+
+@media only screen and (max-width: 639px) {
+
+}
+/**
+ *360-479
+ * 两边间距25，页面内容居中
+ */
+@media only screen and (max-width: 479px) {
+
+}
+/**
+ *320-359
+ * 按百分比缩放，最小缩放到320
+ */
+@media only screen and (max-width: 359px) {
+
+}
