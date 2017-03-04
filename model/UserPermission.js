@@ -1,7 +1,7 @@
 'use strict';
 
 let orm = require('./orm');
-module.exports = orm.accountdb.define('goods', {
+module.exports = orm.accountdb.define('user_permisssion', {
     id: {
         field: 'id',
         type: orm.Sequelize.INTEGER,
@@ -15,55 +15,35 @@ module.exports = orm.accountdb.define('goods', {
             this.setDataValue('id', val);
         }
     },
-    rmb: {
-        field: 'rmb',
+    userId: {
+        field: 'user_id',
+        type: orm.Sequelize.INTEGER,
+        allowNull: false,
+        defaultValue: '',
+        get: function () {
+            return this.getDataValue('userId');
+        },
+        set: function (val) {
+            this.setDataValue('userId', val);
+        }
+    },
+    permissionId: {
+        field: 'permission_id',
         type: orm.Sequelize.INTEGER,
         allowNull: false,
         defaultValue: 0,
         get: function () {
-            return this.getDataValue('rmb');
+            return this.getDataValue('permissionId');
         },
         set: function (val) {
-            this.setDataValue('rmb', val);
-        }
-    },
-    amount: {
-        field: 'amount',
-        type: orm.Sequelize.INTEGER,
-        allowNull: false,
-        get: function () {
-            return this.getDataValue('amount');
-        },
-        set: function (val) {
-            this.setDataValue('amount', val);
-        }
-    },
-    status: {
-        field: 'status',
-        type: orm.Sequelize.INTEGER,
-        allowNull: true,
-        get: function () {
-            return this.getDataValue('status');
-        },
-        set: function (val) {
-            this.setDataValue('status', val);
-        }
-    },
-    createTime: {
-        field: 'create_time',
-        type: orm.Sequelize.DATE,
-        allownNull: false,
-        get: function () {
-            return this.getDataValue('createTime');
-        },
-        set: function (val) {
-            this.setDataValue('createTime', val);
+            this.setDataValue('permissionId', val);
         }
     },
     cate: {
         field: 'cate',
         type: orm.Sequelize.INTEGER,
-        allowNull: true,
+        allowNull: false,
+        defaultValue: 0,
         get: function () {
             return this.getDataValue('cate');
         },

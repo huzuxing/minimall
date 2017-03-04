@@ -1,10 +1,8 @@
-/**
- * Created by zzy on 17/2/24.
- */
 'use strict';
+
 let orm = require('./orm');
 
-module.exports = orm.accountdb.define('task', {
+module.exports = orm.accountdb.define('module', {
     id: {
         field: 'id',
         type: orm.Sequelize.INTEGER,
@@ -29,92 +27,82 @@ module.exports = orm.accountdb.define('task', {
             this.setDataValue('name', val);
         }
     },
-    cate: {
-        field: 'cate',
-        type: orm.Sequelize.INTEGER,
-        allowNull: false,
-        get: function () {
-            return this.getDataValue('cate');
-        },
-        set: function (val) {
-            this.setDataValue('cate', val);
-        }
-    },
-    channel: {
-        field: 'channel',
+    key: {
+        field: 'key',
         type: orm.Sequelize.STRING,
         allowNull: false,
         get: function () {
-            return this.getDataValue('channel');
+            return this.getDataValue('key');
         },
         set: function (val) {
-            this.setDataValue('channel', val);
+            this.setDataValue('key', val);
         }
     },
-    type: {
-        field: 'type',
+    link: {
+        field: 'link',
+        type: orm.Sequelize.STRING,
+        allowNull: false,
+        get: function () {
+            return this.getDataValue('link');
+        },
+        set: function (val) {
+            this.setDataValue('link', val);
+        }
+    },
+    parentId: {
+        field: 'parent_id',
+        type: orm.Sequelize.INTEGER,
+        allowNull: false,
+        defaultValue: 0,
+        get: function () {
+            return this.getDataValue('parentId');
+        },
+        set: function (val) {
+            this.setDataValue('parentId', val);
+        }
+    },
+    isDisplay: {
+        field: 'isDisplay',
         type: orm.Sequelize.INTEGER,
         allowNull: false,
         get: function () {
-            return this.getDataValue('type');
+            return this.getDataValue('isDisplay');
         },
         set: function (val) {
-            this.setDataValue('type', val);
+            this.setDataValue('isDisplay', val);
         }
     },
-    targetType: {
-        field: 'target_type',
+    order: {
+        field: 'order',
         type: orm.Sequelize.INTEGER,
         allowNull: false,
         get: function () {
-            return this.getDataValue('targetType');
+            return this.getDataValue('order');
         },
         set: function (val) {
-            this.setDataValue('targetType', val);
+            this.setDataValue('order', val);
         }
     },
-    targetNum: {
-        field: 'target_num',
+    icon: {
+        field: 'icon',
+        type: orm.Sequelize.STRING,
+        allowNull: false,
+        get: function () {
+            return this.getDataValue('icon');
+        },
+        set: function (val) {
+            this.setDataValue('icon', val);
+        }
+    },
+    level: {
+        field: 'level',
         type: orm.Sequelize.INTEGER,
         allowNull: false,
         get: function () {
-            return this.getDataValue('targetNum');
+            return this.getDataValue('level');
         },
         set: function (val) {
-            this.setDataValue('targetNum', val);
-        }
-    },
-    targetRequire: {
-        field: 'target_require',
-        type: orm.Sequelize.INTEGER,
-        allowNull: false,
-        get: function () {
-            return this.getDataValue('targetRequire');
-        },
-        set: function (val) {
-            this.setDataValue('targetRequire', val);
-        }
-    },
-    awardType: {
-        field: 'award_type',
-        type: orm.Sequelize.INTEGER,
-        allowNull: false,
-        get: function () {
-            return this.getDataValue('awardType');
-        },
-        set: function (val) {
-            this.setDataValue('awardType', val);
-        }
-    },
-    awardCount: {
-        field: 'award_count',
-        type: orm.Sequelize.INTEGER,
-        allowNull: false,
-        get: function () {
-            return this.getDataValue('awardCount');
-        },
-        set: function (val) {
-            this.setDataValue('awardCount', val);
+            this.setDataValue('level', val);
         }
     },
     createTime: {
@@ -131,7 +119,7 @@ module.exports = orm.accountdb.define('task', {
     updateTime: {
         field: 'update_time',
         type: orm.Sequelize.DATE,
-        allowNull: false,
+        allowNull: true,
         get: function () {
             return this.getDataValue('updateTime');
         },
@@ -139,4 +127,8 @@ module.exports = orm.accountdb.define('task', {
             this.setDataValue('updateTime', val);
         }
     }
+}, {
+    freezeTableName: true,
+    charset: 'utf8',
+    timstamps: false
 });

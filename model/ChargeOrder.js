@@ -1,6 +1,6 @@
 'use strict';
 
-var orm = require('./orm');
+let orm = require('./orm');
 module.exports = orm.accountdb.define('chargeorder', {
     id: {
         field: 'id',
