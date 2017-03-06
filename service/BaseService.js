@@ -32,8 +32,19 @@ module.exports = class BaseService {
             });
         });
     }
-    destroy() {
-        console.log(555);
+    destroy(dbEntity, id) {
+        return new Promise(function (resolve, reject) {
+            dbEntity.destroy({
+                where : {
+                    id : id
+                }
+            }).then(result => {
+                resolve(result);
+            }).catch(ex => {
+                console.error(ex);
+                throw new Error(ex);
+            });
+        });
     }
     update(dbEntity, entity) {
         return new Promise(function (resolve, reject) {

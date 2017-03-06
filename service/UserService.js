@@ -2,20 +2,20 @@
  * Created by zzy on 17/2/24.
  */
 'use strict';
-let user = require('../../model/User');
-let orm = require('../../model/orm');
-let BaseService = require('../BaseService');
-let role = require('../../model/Role');
-let group = require('../../model/Group');
-let permission = require('../../model/Permission');
-let userRole = require('../../model/UserRole');
-let groupRole = require('../../model/GroupRole');
-let userPermission = require('../../model/UserPermission');
-let groupPermission = require('../../model/GroupPermission');
-let userGroup = require('../../model/UserGroup');
-let rolePermission = require('../../model/RolePermission');
-let utils = require('../../utils');
-let module = require('../../model/Module');
+let user = require('../model/User');
+let orm = require('../model/orm');
+let BaseService = require('./BaseService');
+let role = require('../model/Role');
+let group = require('../model/Group');
+let permission = require('../model/Permission');
+let userRole = require('../model/UserRole');
+let groupRole = require('../model/GroupRole');
+let userPermission = require('../model/UserPermission');
+let groupPermission = require('../model/GroupPermission');
+let userGroup = require('../model/UserGroup');
+let rolePermission = require('../model/RolePermission');
+let utils = require('../utils');
+let modules = require('../model/Module');
 
 class UserService extends BaseService {
 
@@ -83,7 +83,7 @@ class UserService extends BaseService {
         return super.save(groupRole, bean);
     }
 
-    // 根据用户名,邮箱,微信unionid,和密码,获取用户信息
+    //根据用户名,邮箱,微信unionid,和密码,获取用户信息
     getUserInfo(account, pwd) {
 
         return new Promise(function (resolve, reject) {
@@ -143,7 +143,7 @@ class UserService extends BaseService {
         });
     }
 
-    // 微信登录,根据unionid 获取用户
+    //微信登录,根据unionid 获取用户
     getUserInfoByUnionId(unionId) {
         return new Promise(function (resolve, result) {
             user.findOne({
@@ -159,7 +159,7 @@ class UserService extends BaseService {
         });
     }
 
-    // 根据ID 获取user信息
+    //根据ID 获取user信息
     getUserInfoById(id) {
         return new Promise(function (resolve, result) {
             user.findOne({
@@ -175,7 +175,7 @@ class UserService extends BaseService {
         });
     }
 
-    // 修改用户信息
+    //修改用户信息
     updateUserInfo(bean) {
         return new Promise(function (resolve, reject) {
             getUserInfoById(bean.id).then(result => {
@@ -197,9 +197,19 @@ class UserService extends BaseService {
         });
     }
 
-    // 持久化资源module
+    //持久化资源module
     saveModule(bean) {
-        return super.save(module, bean);
+        return super.save(modules, bean);
+    }
+
+    //更新资源module
+    updateModule(bean) {
+        return super.update(modules, bean);
+    }
+
+    //删除资源module
+    deleteModule(id) {
+        return super.destroy(modules, id);
     }
 }
 module.exports = new UserService();

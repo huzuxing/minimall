@@ -9,6 +9,7 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var users = require('./routes/users');
 let test = require('./test/Test');
+let interceptor = require('./common/Interceptor');
 
 var app = express();
 
