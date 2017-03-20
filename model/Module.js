@@ -16,44 +16,12 @@ module.exports = orm.accountdb.define('module', {
             this.setDataValue('id', val);
         }
     },
-    name: {
-        field: 'name',
-        type: orm.Sequelize.STRING,
-        allowNull: false,
-        get: function () {
-            return this.getDataValue('name');
-        },
-        set: function (val) {
-            this.setDataValue('name', val);
-        }
-    },
-    key: {
-        field: 'key',
-        type: orm.Sequelize.STRING,
-        allowNull: false,
-        get: function () {
-            return this.getDataValue('key');
-        },
-        set: function (val) {
-            this.setDataValue('key', val);
-        }
-    },
-    link: {
-        field: 'link',
-        type: orm.Sequelize.STRING,
-        allowNull: false,
-        get: function () {
-            return this.getDataValue('link');
-        },
-        set: function (val) {
-            this.setDataValue('link', val);
-        }
-    },
     parentId: {
         field: 'parent_id',
         type: orm.Sequelize.INTEGER,
-        allowNull: false,
-        defaultValue: 0,
+        autoincrement: true,
+        primaryKey: true,
+        unique: true,
         get: function () {
             return this.getDataValue('parentId');
         },
@@ -61,26 +29,26 @@ module.exports = orm.accountdb.define('module', {
             this.setDataValue('parentId', val);
         }
     },
-    isDisplay: {
-        field: 'isDisplay',
-        type: orm.Sequelize.INTEGER,
+    enName: {
+        field: 'en_name',
+        type: orm.Sequelize.STRING,
         allowNull: false,
         get: function () {
-            return this.getDataValue('isDisplay');
+            return this.getDataValue('enName');
         },
         set: function (val) {
-            this.setDataValue('isDisplay', val);
+            this.setDataValue('enName', val);
         }
     },
-    order: {
-        field: 'order',
-        type: orm.Sequelize.INTEGER,
+    zhName: {
+        field: 'zh_name',
+        type: orm.Sequelize.STRING,
         allowNull: false,
         get: function () {
-            return this.getDataValue('order');
+            return this.getDataValue('zhName');
         },
         set: function (val) {
-            this.setDataValue('order', val);
+            this.setDataValue('zhName', val);
         }
     },
     icon: {
@@ -94,15 +62,181 @@ module.exports = orm.accountdb.define('module', {
             this.setDataValue('icon', val);
         }
     },
-    level: {
-        field: 'level',
+    url: {
+        field: 'url',
+        type: orm.Sequelize.STRING,
+        allowNull: false,
+        get: function () {
+            return this.getDataValue('url');
+        },
+        set: function (val) {
+            this.setDataValue('url', val);
+        }
+    },
+    target: {
+        field: 'target',
+        type: orm.Sequelize.STRING,
+        allowNull: false,
+        get: function () {
+            return this.getDataValue('target');
+        },
+        set: function (val) {
+            this.setDataValue('target', val);
+        }
+    },
+    isMenu: {
+        field: 'is_menu',
+        type: orm.Sequelize.INTEGER,
+        allowNull: false,
+        defaultValue: 0,
+        get: function () {
+            return this.getDataValue('isMenu');
+        },
+        set: function (val) {
+            this.setDataValue('isMenu', val);
+        }
+    },
+    isDisplay: {
+        field: 'isDisplay',
         type: orm.Sequelize.INTEGER,
         allowNull: false,
         get: function () {
-            return this.getDataValue('level');
+            return this.getDataValue('isDisplay');
         },
         set: function (val) {
-            this.setDataValue('level', val);
+            this.setDataValue('isDisplay', val);
+        }
+    },
+    allowExpand: {
+        field: 'allow_expand',
+        type: orm.Sequelize.INTEGER,
+        allowNull: false,
+        get: function () {
+            return this.getDataValue('allowExpand');
+        },
+        set: function (val) {
+            this.setDataValue('allowExpand', val);
+        }
+    },
+    isPublish: {
+        field: 'is_publish',
+        type: orm.Sequelize.INTEGER,
+        allowNull: false,
+        get: function () {
+            return this.getDataValue('isPublish');
+        },
+        set: function (val) {
+            this.setDataValue('isPublish', val);
+        }
+    },
+    allowEdit: {
+        field: 'allow_edit',
+        type: orm.Sequelize.INTEGER,
+        allowNull: false,
+        get: function () {
+            return this.getDataValue('allowEdit');
+        },
+        set: function (val) {
+            this.setDataValue('allowEdit', val);
+        }
+    },
+    allowDelete: {
+        field: 'allow_delete',
+        type: orm.Sequelize.INTEGER,
+        allowNull: false,
+        get: function () {
+            return this.getDataValue('allowDelete');
+        },
+        set: function (val) {
+            this.setDataValue('allowDelete', val);
+        }
+    },
+    sort: {
+        field: 'sort',
+        type: orm.Sequelize.INTEGER,
+        allowNull: false,
+        get: function () {
+            return this.getDataValue('sort');
+        },
+        set: function (val) {
+            this.setDataValue('sort', val);
+        }
+    },
+    deleteMark: {
+        field: 'delete_mark',
+        type: orm.Sequelize.INTEGER,
+        allowNull: false,
+        get: function () {
+            return this.getDataValue('deleteMark');
+        },
+        set: function (val) {
+            this.setDataValue('deleteMark', val);
+        }
+    },
+    enableMark: {
+        field: 'enable_mark',
+        type: orm.Sequelize.INTEGER,
+        allowNull: false,
+        get: function () {
+            return this.getDataValue('enableMark');
+        },
+        set: function (val) {
+            this.setDataValue('enableMark', val);
+        }
+    },
+    description: {
+        field: 'description',
+        type: orm.Sequelize.STRING,
+        allowNull: false,
+        get: function () {
+            return this.getDataValue('description');
+        },
+        set: function (val) {
+            this.setDataValue('description', val);
+        }
+    },
+    createUserId: {
+        field: 'create_user_id',
+        type: orm.Sequelize.INTEGER,
+        allowNull: true,
+        get: function () {
+            return this.getDataValue('createUserId');
+        },
+        set: function (val) {
+            this.setDataValue('createUserId', val);
+        }
+    },
+    createUserName: {
+        field: 'create_user_name',
+        type: orm.Sequelize.STRING,
+        allowNull: true,
+        get: function () {
+            return this.getDataValue('createUserName');
+        },
+        set: function (val) {
+            this.setDataValue('createUserName', val);
+        }
+    },
+    updateUserId: {
+        field: 'update_user_name',
+        type: orm.Sequelize.INTEGER,
+        allowNull: true,
+        get: function () {
+            return this.getDataValue('updateUserId');
+        },
+        set: function (val) {
+            this.setDataValue('updateUserId', val);
+        }
+    },
+    updateUserName: {
+        field: 'update_user_name',
+        type: orm.Sequelize.STRING,
+        allowNull: true,
+        get: function () {
+            return this.getDataValue('updateUserName');
+        },
+        set: function (val) {
+            this.setDataValue('updateUserName', val);
         }
     },
     createTime: {

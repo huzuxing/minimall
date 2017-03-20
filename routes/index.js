@@ -2,7 +2,7 @@
 var express = require('express');
 var router = express.Router();
 const wxPay = require('../common/WxPay');
-
+const CONSTANT = require('../common/Constant');
 const request = require('request');
 let config = require('../config');
 const APPID = config.WX_PUB_PAY.PUB_APPID;
@@ -44,6 +44,23 @@ Date.prototype.format = function (fmt) {
 router.get('/', function (req, res, next) {
     res.render('index', {title: 'Express'});
 });
+
+router.get('/default', function (req, res) {
+    res.render('default');
+});
+
+/**
+ * 获取菜单
+ */
+router.get('/menu', function (req, res) {
+    service.moduleService.list().then(result => {
+        res.jsonp({code : CONSTANT.SUCCESS_CODE, data : result});
+    }).catch(ex => {
+        console.error(ex);
+        res.jsonp({code : CONSTANT.FAIL_CODE, msg : ex.message});
+    });
+});
+
 //授权
 router.get('/wxpub', function (req, res) {
     res.redirect('https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + APPID + '&redirect_uri=http://www.baidu.com?' +

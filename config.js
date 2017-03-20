@@ -5,10 +5,10 @@
 
 let config = {
     db : {
-        host : '116.62.33.43',
-        db   : 'njmj',
+        host : 'localhost',
+        db   : 'common',
         user : 'root',
-        pwd  : 'test1231'
+        pwd  : '1234'
     },
     WX_PUB_PAY: {
         UTL:'https://api.mch.weixin.qq.com/pay/unifiedorder',

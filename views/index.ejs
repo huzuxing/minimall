@@ -1,11 +1,86 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+﻿<!DOCTYPE html>
+<!--
+Beyond Admin - Responsive Admin Dashboard Template build with Twitter Bootstrap 3
+Version: 1.0.0
+Purchase: http://wrapbootstrap.com
+-->
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!--Head-->
+<head>
+    <meta charset="utf-8" />
+    <title>后台管理系统-资讯管理</title>
+    <meta name="description" content="data tables" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!--Basic Styles-->
+    <link href="/stylesheets/bootstrap.min.css" rel="stylesheet" />
+    <link id="bootstrap-rtl-link" href="" rel="stylesheet" />
+    <link href="/stylesheets/font-awesome.min.css" rel="stylesheet" />
+
+    <!--Beyond styles-->
+    <link id="beyond-link" href="/stylesheets/beyond.min.css" rel="stylesheet" />
+    <link href="/stylesheets/demo.min.css" rel="stylesheet" />
+    <link href="/stylesheets/animate.min.css" rel="stylesheet" />
+    <link id="skin-link" href="" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        .login-container .loginbox {
+            position: relative;
+            width: 300px!important;
+            height: 250px!important;
+            padding: 0;
+            -webkit-box-shadow: 0 0 14px rgba(0,0,0,.1);
+            -moz-box-shadow: 0 0 14px rgba(0,0,0,.1);
+            box-shadow: 0 0 14px rgba(0,0,0,.1);
+        }
+    </style>
+</head>
+<!--Head Ends-->
+<!--Body-->
+<body>
+    <div class="login-container animated fadeInDown">
+        <div class="loginbox bg-white">
+            <div class="loginbox-title">管理系统登录</div>
+            <div class="loginbox-or">
+                <div class="or-line"></div>
+            </div>
+            <form action="/login" method="post" id="jvForm">
+                <div class="loginbox-textbox">
+                    <input type="text" name="username" class="form-control" placeholder="用户名" />
+                </div>
+                <div class="loginbox-textbox">
+                    <input type="password" name="password" class="form-control" placeholder="密码" />
+                </div>
+                <!--<div class="loginbox-textbox">
+                    <span style="color: red;">
+                        用户名或者密码不正确!
+                    </span>
+                </div>-->
+                <div class="loginbox-submit">
+                    <input type="button" id="login" class="btn btn-primary btn-block" value="登录">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="/javascripts/jquery/jQuery-2.2.0.min.js"></script>
+    <script type="application/javascript" src="/javascripts/jquery-form.js"></script>
+    <script type="application/javascript" src="/javascripts/layer.js"></script>
+<script type="application/javascript">
+    $(function () {
+        $("#login").click(function () {
+            if ("" == $("input[name=username]").val()) {
+                layer.alert("请输入用户名!");
+                return;
+            }
+            if ("" == $("input[name=password]").val()) {
+                layer.alert("请输入密码!");
+                return;
+            }
+            $("#jvForm").submit();
+        });
+    });
+</script>
+</body>
+<!--Body Ends-->
 </html>

@@ -26,5 +26,21 @@ class ModuleService extends BaseService {
     delete(id) {
         return super.destroy(modules, id);
     }
+    
+    //获取菜单列表
+    list(ids) {
+        return new Promise(function (resolve, reject) {
+            let sql = 'select * from module m where 1=1';
+            if (ids && ids instanceof Array) {
+                sql += ' and m.id in(' + ids + ')';
+            }
+            orm.accountdb.query(sql, {type: orm.Sequelize.QueryTypes.SELECT}).then(result => {
+               resolve(result);
+            }).catch(ex => {
+                console.error(ex);
+                reject(ex);
+            });
+        });
+    }
 }
 module.exports = new ModuleService();
