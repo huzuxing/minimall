@@ -1,9 +1,9 @@
 'use strict';
 
 let orm = require('./orm');
-module.exports = orm.accountdb.define('user', {
+module.exports = orm.accountdb.define('admin_user', {
     id: {
-        field: 'userid',
+        field: 'id',
         type: orm.Sequelize.INTEGER,
         autoincrement: true,
         primaryKey: true,
@@ -19,7 +19,6 @@ module.exports = orm.accountdb.define('user', {
         field: 'account',
         type: orm.Sequelize.STRING,
         allowNull: false,
-        defaultValue: '',
         get: function () {
             return this.getDataValue('account');
         },
@@ -27,38 +26,27 @@ module.exports = orm.accountdb.define('user', {
             this.setDataValue('account', val);
         }
     },
-    unionId: {
-        field: 'unionid',
+    username: {
+        field: 'username',
         type: orm.Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
         defaultValue: '',
         get: function () {
-            return this.getDataValue('unionId');
+            return this.getDataValue('username');
         },
         set: function (val) {
-            this.setDataValue('unionId', val);
+            this.setDataValue('username', val);
         }
     },
-    name: {
-        field: 'name',
+    password: {
+        field: 'password',
         type: orm.Sequelize.STRING,
-        allowNull: true,
+        allowNull: false,
         get: function () {
-            return this.getDataValue('name');
+            return this.getDataValue('password');
         },
         set: function (val) {
-            this.setDataValue('name', val);
-        }
-    },
-    gender: {
-        field: 'gender',
-        type: orm.Sequelize.INTEGER,
-        allowNull: true,
-        get: function () {
-            return this.getDataValue('gender');
-        },
-        set: function (val) {
-            this.setDataValue('gender', val);
+            this.setDataValue('password', val);
         }
     },
     phone: {
@@ -72,26 +60,15 @@ module.exports = orm.accountdb.define('user', {
             this.setDataValue('phone', val);
         }
     },
-    job: {
-        field: 'job',
+    email: {
+        field: 'email',
         type: orm.Sequelize.STRING,
-        allowNull: true,
-        get: function () {
-            return this.getDataValue('job');
-        },
-        set: function (val) {
-            this.setDataValue('job', val);
-        }
-    },
-    age: {
-        field: 'age',
-        type: orm.Sequelize.INTEGER,
         defaultValue: 0,
         get: function () {
-            return this.getDataValue('age');
+            return this.getDataValue('email');
         },
         set: function (val) {
-            this.setDataValue('age', val);
+            this.setDataValue('email', val);
         }
     },
     isSuper: {
@@ -105,37 +82,15 @@ module.exports = orm.accountdb.define('user', {
             this.setDataValue('isSuper', val);
         }
     },
-    headImg: {
-        field: 'head_img',
-        type: orm.Sequelize.STRING,
+    isDisabled: {
+        field: 'is_disabled',
+        type: orm.Sequelize.INTEGER,
         defaultValue: 0,
         get: function () {
-            return this.getDataValue('headImg');
+            return this.getDataValue('isDisabled');
         },
         set: function (val) {
-            this.setDataValue('headImg', val);
-        }
-    },
-    exp: {
-        field: 'exp',
-        type: orm.Sequelize.STRING,
-        defaultValue: '',
-        get: function () {
-            return this.getDataValue('exp');
-        },
-        set: function (val) {
-            this.setDataValue('exp', val);
-        }
-    },
-    location: {
-        field: 'location',
-        type: orm.Sequelize.STRING,
-        allowNull: false,
-        get: function () {
-            return this.getDataValue('location');
-        },
-        set: function (val) {
-            this.setDataValue('location', val);
+            this.setDataValue('isDisabled', val);
         }
     },
     createTime: {

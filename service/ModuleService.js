@@ -42,5 +42,32 @@ class ModuleService extends BaseService {
             });
         });
     }
+
+    getMenus(bean) {
+        return new Promise(function (resovle, reject) {
+            let sql = 'select * from module m where 1=1';
+            if (bean && bean.zhName) {
+                sql += ' and m.zh_name like \'% ' + bean.zhName + '%\'';
+            }
+            orm.accountdb.query(sql, {type: orm.Sequelize.QueryTypes.SELECT}).then(result => {
+                resovle(result);
+            }).catch(ex => {
+                console.error(ex);
+                reject(ex);
+            });
+        });
+    }
+
+    // 统计
+    count() {
+        return new Promise(function (resolve, reject) {
+            modules.count().then(result => {
+                resolve(result);
+            }).catch(ex => {
+                console.error(ex);
+                reject(ex);
+            });
+        });
+    }
 }
 module.exports = new ModuleService();

@@ -2,7 +2,7 @@
  * Created by zzy on 17/2/24.
  */
 'use strict';
-let user = require('../model/User');
+let adminUser = require('../model/AdminUser');
 let orm = require('../model/orm');
 let BaseService = require('./BaseService');
 let role = require('../model/Role');
@@ -17,7 +17,7 @@ let rolePermission = require('../model/RolePermission');
 let utils = require('../utils');
 let modules = require('../model/Module');
 
-class UserService extends BaseService {
+class AdminUserService extends BaseService {
 
     constructor() {
         super();
@@ -87,7 +87,7 @@ class UserService extends BaseService {
     getUserInfo(account, pwd) {
 
         return new Promise(function (resolve, reject) {
-            user.findOne({
+            adminUser.findOne({
                 where: {
                     $and: [
                         {
@@ -103,7 +103,7 @@ class UserService extends BaseService {
                     resolve(result);
                 }
                 else {
-                    return user.findOne({
+                    return adminUser.findOne({
                         where: {
                             $and: [
                                 {
@@ -121,7 +121,7 @@ class UserService extends BaseService {
                     resolve(result);
                 }
                 else {
-                    return user.findOne({
+                    return adminUser.findOne({
                         where: {
                             $and: [
                                 {
@@ -212,4 +212,4 @@ class UserService extends BaseService {
         return super.destroy(modules, id);
     }
 }
-module.exports = new UserService();
+module.exports = new AdminUserService();

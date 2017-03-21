@@ -5,11 +5,12 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+const session  = require('express-session');
 
-var index = require('./routes/index');
-var users = require('./routes/users');
+const admin = require('./routes/admin/index');
+const front = require('./routes/front/index');
 let test = require('./test/Test');
-let interceptor = require('./common/Interceptor');
+const interceptor = require('./common/Interceptor');
 
 var app = express();
 
@@ -23,11 +24,20 @@ app.use(logger('dev'));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
-app.use(cookieParser());
+app.use(cookieParser('chuangyichaungadmin'));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+    secret: 'chuangyichaungadmin',
+    cookie: {maxAge: 60 * 1000 * 30},
+    resave: true,
+    saveUninitialized: false
+}));
 
-app.use('/', index);
-app.use('/users', users);
+app.all('*', function (req, res, next) {
+    interceptor.intercept(req, res, next);
+});
+app.use('/admin', admin);
+app.use('/', front);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

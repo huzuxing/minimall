@@ -3,8 +3,8 @@
  */
 'use strict';
 
-let userService = require('./UserService');
+let adminUserService = require('./AdminUserService');
 let moduleService = require('./ModuleService');
 
-module.exports.userService = userService;
+module.exports.adminUserService = adminUserService;
 module.exports.moduleService = moduleService;
