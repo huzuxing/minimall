@@ -1,27 +1,24 @@
--- MySQL dump 10.13  Distrib 5.6.31, for Win64 (x86_64)
---
--- Host: localhost    Database: common
--- ------------------------------------------------------
--- Server version	5.6.31-log
+/*
+ Navicat MySQL Data Transfer
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+ Source Server         : localhost
+ Source Server Version : 50716
+ Source Host           : localhost
+ Source Database       : common
 
---
--- Table structure for table `admin_user`
---
+ Target Server Version : 50716
+ File Encoding         : utf-8
 
+ Date: 03/23/2017 18:07:48 PM
+*/
+
+SET NAMES utf8;
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+--  Table structure for `admin_user`
+-- ----------------------------
 DROP TABLE IF EXISTS `admin_user`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `admin_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `account` varchar(64) NOT NULL COMMENT '登录账号',
@@ -29,21 +26,26 @@ CREATE TABLE `admin_user` (
   `password` varchar(64) NOT NULL,
   `phone` varchar(20) DEFAULT NULL,
   `create_time` datetime NOT NULL,
-  `login_time` datetime NOT NULL,
   `last_login_time` datetime NOT NULL,
   `login_count` int(11) NOT NULL DEFAULT '0',
   `group_id` int(11) NOT NULL DEFAULT '0' COMMENT '所属组ID',
+  `is_super` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否是超级管理员',
+  `email` varchar(125) NOT NULL DEFAULT '',
+  `is_disabled` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否禁用，0-否，1-是',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
---
--- Table structure for table `group`
---
+-- ----------------------------
+--  Records of `admin_user`
+-- ----------------------------
+BEGIN;
+INSERT INTO `admin_user` VALUES ('1', 'admin', 'admin', '21232f297a57a5a743894a0e4a801fc3', '13808221061', '2017-03-21 10:12:14', '2017-03-21 10:12:33', '0', '0', '1', '', '0');
+COMMIT;
 
+-- ----------------------------
+--  Table structure for `group`
+-- ----------------------------
 DROP TABLE IF EXISTS `group`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `group` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `parent_id` int(11) NOT NULL DEFAULT '0',
@@ -52,15 +54,11 @@ CREATE TABLE `group` (
   `description` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='组表';
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Table structure for table `group_permission`
---
-
+-- ----------------------------
+--  Table structure for `group_permission`
+-- ----------------------------
 DROP TABLE IF EXISTS `group_permission`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `group_permission` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `group_id` int(11) NOT NULL DEFAULT '0',
@@ -68,115 +66,22 @@ CREATE TABLE `group_permission` (
   `permission_type` tinyint(4) NOT NULL DEFAULT '0' COMMENT '权限类型，0-可访问，1-可授权',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Table structure for table `group_role`
---
-
+-- ----------------------------
+--  Table structure for `group_role`
+-- ----------------------------
 DROP TABLE IF EXISTS `group_role`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `group_role` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `group_id` int(11) NOT NULL DEFAULT '0',
   `role_id` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Table structure for table `permission`
---
-
-DROP TABLE IF EXISTS `permission`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `permission` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `parent_id` int(11) NOT NULL DEFAULT '0' COMMENT '父ID',
-  `name` varchar(64) NOT NULL,
-  `description` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `role`
---
-
-DROP TABLE IF EXISTS `role`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `role` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `parent_id` int(11) NOT NULL DEFAULT '0' COMMENT '父ID',
-  `name` varchar(64) NOT NULL,
-  `create_time` datetime NOT NULL,
-  `description` varchar(255) DEFAULT NULL COMMENT '角色描述',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `role_permission`
---
-
-DROP TABLE IF EXISTS `role_permission`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `role_permission` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `permission_id` int(11) NOT NULL DEFAULT '0',
-  `permission_type` tinyint(4) NOT NULL DEFAULT '0' COMMENT '权限类型，0-可访问，1-可授权',
-  `role_id` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `user_group`
---
-
-DROP TABLE IF EXISTS `user_group`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `user_group` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL DEFAULT '0',
-  `group_id` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `user_permission`
---
-
-DROP TABLE IF EXISTS `user_permission`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `user_permission` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL DEFAULT '0',
-  `permission_id` int(11) NOT NULL DEFAULT '0',
-  `permission_type` tinyint(4) DEFAULT '0' COMMENT '权限类型：0-可访问，1-可授权',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
-
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2017-03-07 20:49:14
-
-//菜单
+-- ----------------------------
+--  Table structure for `module`
+-- ----------------------------
+DROP TABLE IF EXISTS `module`;
 CREATE TABLE `module` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `parent_id` int(11) NOT NULL DEFAULT '0',
@@ -195,11 +100,80 @@ CREATE TABLE `module` (
   `enable_mark` tinyint(4) NOT NULL DEFAULT '1',
   `description` varchar(255) NOT NULL DEFAULT '',
   `create_time` datetime NOT NULL,
-  `user_id` int(11) NOT NULL COMMENT '创建此菜单的用户ID',
-  `username` varchar(125) NOT NULL COMMENT '创建此菜单的用户名',
+  `create_user_id` int(11) NOT NULL COMMENT '创建此菜单的用户ID',
+  `create_username` varchar(125) NOT NULL COMMENT '创建此菜单的用户名',
   `update_time` datetime NOT NULL,
-  `update_user_id` int(11) NOT NULL COMMENT '更新此菜单的用户ID',
-  `update_username` varchar(125) NOT NULL COMMENT '更新此菜单的用户名',
+  `update_user_id` int(11) NOT NULL DEFAULT '0' COMMENT '更新此菜单的用户ID',
+  `update_username` varchar(125) NOT NULL DEFAULT '' COMMENT '更新此菜单的用户名',
   `is_display` tinyint(4) DEFAULT NULL COMMENT '是否显示，0-是，1-否',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='菜单表'
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COMMENT='菜单表';
+
+-- ----------------------------
+--  Records of `module`
+-- ----------------------------
+BEGIN;
+INSERT INTO `module` VALUES ('1', '0', 'SysManage', '系统管理', 'fa fa-desktop', 'javascript:;', 'expand', '0', '1', '0', '0', '0', '0', '0', '1', '', '2017-03-21 15:11:45', '1', 'admin', '2017-03-21 15:12:08', '1', 'admin', '0'), ('2', '1', 'MenuManage', '菜单管理', 'fa fa-folder', '/admin/menu/manage', 'main', '0', '1', '0', '0', '0', '0', '0', '1', '', '2017-03-21 15:11:45', '1', 'admin', '2017-03-21 15:12:08', '1', 'admin', '0'), ('6', '0', 'account', '账号管理', 'fa fa-folder', 'javascript:;', 'expand', '0', '1', '0', '0', '0', '0', '0', '1', '', '2017-03-23 11:12:54', '1', 'admin', '2017-03-23 16:51:15', '1', 'admin', '0');
+COMMIT;
+
+-- ----------------------------
+--  Table structure for `permission`
+-- ----------------------------
+DROP TABLE IF EXISTS `permission`;
+CREATE TABLE `permission` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `parent_id` int(11) NOT NULL DEFAULT '0' COMMENT '父ID',
+  `name` varchar(64) NOT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+--  Table structure for `role`
+-- ----------------------------
+DROP TABLE IF EXISTS `role`;
+CREATE TABLE `role` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `parent_id` int(11) NOT NULL DEFAULT '0' COMMENT '父ID',
+  `name` varchar(64) NOT NULL,
+  `create_time` datetime NOT NULL,
+  `description` varchar(255) DEFAULT NULL COMMENT '角色描述',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+--  Table structure for `role_permission`
+-- ----------------------------
+DROP TABLE IF EXISTS `role_permission`;
+CREATE TABLE `role_permission` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `permission_id` int(11) NOT NULL DEFAULT '0',
+  `permission_type` tinyint(4) NOT NULL DEFAULT '0' COMMENT '权限类型，0-可访问，1-可授权',
+  `role_id` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+--  Table structure for `user_group`
+-- ----------------------------
+DROP TABLE IF EXISTS `user_group`;
+CREATE TABLE `user_group` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL DEFAULT '0',
+  `group_id` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+--  Table structure for `user_permission`
+-- ----------------------------
+DROP TABLE IF EXISTS `user_permission`;
+CREATE TABLE `user_permission` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL DEFAULT '0',
+  `permission_id` int(11) NOT NULL DEFAULT '0',
+  `permission_type` tinyint(4) DEFAULT '0' COMMENT '权限类型：0-可访问，1-可授权',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+SET FOREIGN_KEY_CHECKS = 1;
