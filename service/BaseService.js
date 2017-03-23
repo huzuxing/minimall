@@ -48,7 +48,11 @@ module.exports = class BaseService {
     }
     update(dbEntity, entity) {
         return new Promise(function (resolve, reject) {
-            dbEntity.update(entity).then(function (result) {
+            dbEntity.update(entity, {
+                where : {
+                    id : entity.id
+                }
+            }).then(function (result) {
                 resolve(result);
             }).catch(function (ex) {
                 console.error(ex);

@@ -113,7 +113,7 @@
             </div>
             <div class="content-iframe" style="overflow: hidden;">
                 <div class="mainContent" id="content-main" style="margin: 10px; margin-bottom: 0px; padding: 0;">
-                    <iframe class="LRADMS_iframe" width="100%" height="100%" src="/admin/default" frameborder="0" name="main" data-id="default.html"></iframe>
+                    <iframe class="LRADMS_iframe" width="100%" height="100%" src="/admin/default" id="bodyFrame" frameborder="0" name="main" data-id="default.html"></iframe>
                 </div>
             </div>
         </div>
@@ -122,5 +122,10 @@
     <script src="/javascripts/bootstrap/js/bootstrap.min.js"></script>
     <script src="/javascripts/layer.js"></script>
     <script src="/javascripts/index.js"></script>
+    <script type="application/javascript">
+        function reloadContent() {
+            $('#bodyFrame').attr('src', $('#bodyFrame').prop('src'));
+        }
+    </script>
 </body>
 </html>

@@ -11,6 +11,7 @@ const SECRET = config.WX_PUB_PAY.SECRET;
 let user_url = config.WX_PUB_PAY.USER_URL;
 const service = require('../../service/index');
 const adminUser = require('./users');
+const menuAct = require('./MenuAct');
 
 
 /**
@@ -51,51 +52,7 @@ router.get('/default', function (req, res) {
     res.render('admin/default');
 });
 
-/**
- * 获取菜单
- */
-router.get('/menu', function (req, res) {
-    let admin = req.session.admin;
-    let menus;
-    service.moduleService.list(menus).then(result => {
-        res.jsonp({code : CONSTANT.SUCCESS_CODE, data : JSON.stringify(result)});
-    }).catch(ex => {
-        console.error(ex);
-        res.jsonp({code : CONSTANT.FAIL_CODE, msg : ex.message});
-    });
-});
-
-/**
- * 菜单管理
- */
-router.get('/menu/manage', function (req, res) {
-    let pageNo = req.query.pageNo || 1;
-    let pageSize = req.query.pageSize || 10;
-    let q = req.query.q;
-    let bean = {
-        zhName : q
-    };
-    let page = {
-        pageNo : pageNo,
-        pageSize : pageSize,
-        q: q,
-        prePage : (pageNo - 1) <= 0 ? 1 : pageNo - 1,
-    };
-    service.moduleService.count().then(count => {
-        page.totalCount = count;
-        page.totalPage = (count / pageSize) == 0 ? count / pageSize : Math.round(count / pageSize) + 1;
-        page.nextPage = (pageNo + 1) > page.totalPage ? page.totalPage : pageNo + 1;
-        return service.moduleService.getMenus(bean);
-    }).then(result => {
-        res.locals.menus = result;
-        res.locals.page = page;
-        res.render('admin/menu/list');
-    }).catch(ex => {
-        console.error(ex);
-        res.jsonp({code : CONSTANT.FAIL_CODE, msg : ex.message});
-    });
-});
-
 router.use('/user', adminUser);
+router.use('/menu', menuAct);
 
 module.exports = router;

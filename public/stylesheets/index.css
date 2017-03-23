@@ -69,7 +69,7 @@ a:hover,a:active,a:focus{outline:none;text-decoration:none;color:#72afd2}
 .user-panel > .info > a > .glyphicon{margin-right: 5px;}
 .sidebar-menu{list-style:none;margin:0;padding:0}
 .sidebar-menu>li{position:relative;margin:0;padding:0}
-.sidebar-menu>li>a{padding:12px 5px 12px 15px;display:block;font-size:12px;}
+.sidebar-menu>li>a{padding:12px 5px 12px 15px;display:block;font-size:14px;}
 .sidebar-menu>li>a>.fa,.sidebar-menu>li>a>.glyphicon,.sidebar-menu>li>a>.ion{width:20px;}
 .sidebar-menu>li .label,.sidebar-menu>li .badge{margin-top:3px;margin-right:5px}
 .sidebar-menu li.header{padding:10px 25px 10px 15px;font-size:12px}

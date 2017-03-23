@@ -1,4 +1,37 @@
-﻿<script src="/javascripts/jquery-2.0.3.min.js"></script>
+﻿<script src="/javascripts/jquery-1.11.0.min.js"></script>
 <script src="/javascripts/bootstrap.min.js"></script>
 <script src="/javascripts/layer.js"></script>
-</html>
+<script type="application/javascript">
+    function reloadContent() {
+        location.reload();
+    }
+    $(function () {
+        $(".delete").click(function () {
+            let id = $(this).parent().data("id");
+            let url = $(this).data('url');
+            if (!id || !url) {
+                layer.alert('请先设定参数!');
+                return;
+            }
+            var index = layer.confirm("您确定要删除吗?", function () {
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+                    data: {id: id},
+                    dataType: 'JSON',
+                    success: function (result) {
+                        if (200 == result.code) {
+                            var i = layer.alert("操作成功!", function () {
+                                layer.closeAll();
+                                window.location.reload();
+                            });
+                        }
+                        else
+                            layer.alert(result.msg);
+                    }
+                });
+                layer.close(index);
+            });
+        });
+    });
+</script>

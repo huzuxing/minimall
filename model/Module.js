@@ -76,7 +76,7 @@ module.exports = orm.accountdb.define('module', {
     target: {
         field: 'target',
         type: orm.Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
         get: function () {
             return this.getDataValue('target');
         },
@@ -97,7 +97,7 @@ module.exports = orm.accountdb.define('module', {
         }
     },
     isDisplay: {
-        field: 'isDisplay',
+        field: 'is_display',
         type: orm.Sequelize.INTEGER,
         allowNull: false,
         get: function () {
@@ -110,7 +110,7 @@ module.exports = orm.accountdb.define('module', {
     allowExpand: {
         field: 'allow_expand',
         type: orm.Sequelize.INTEGER,
-        allowNull: false,
+        allowNull: true,
         get: function () {
             return this.getDataValue('allowExpand');
         },
@@ -122,6 +122,7 @@ module.exports = orm.accountdb.define('module', {
         field: 'is_publish',
         type: orm.Sequelize.INTEGER,
         allowNull: false,
+        defaultValue : 0,
         get: function () {
             return this.getDataValue('isPublish');
         },
@@ -132,7 +133,7 @@ module.exports = orm.accountdb.define('module', {
     allowEdit: {
         field: 'allow_edit',
         type: orm.Sequelize.INTEGER,
-        allowNull: false,
+        allowNull: true,
         get: function () {
             return this.getDataValue('allowEdit');
         },
@@ -143,7 +144,7 @@ module.exports = orm.accountdb.define('module', {
     allowDelete: {
         field: 'allow_delete',
         type: orm.Sequelize.INTEGER,
-        allowNull: false,
+        allowNull: true,
         get: function () {
             return this.getDataValue('allowDelete');
         },
@@ -154,7 +155,7 @@ module.exports = orm.accountdb.define('module', {
     sort: {
         field: 'sort',
         type: orm.Sequelize.INTEGER,
-        allowNull: false,
+        allowNull: true,
         get: function () {
             return this.getDataValue('sort');
         },
@@ -165,7 +166,7 @@ module.exports = orm.accountdb.define('module', {
     deleteMark: {
         field: 'delete_mark',
         type: orm.Sequelize.INTEGER,
-        allowNull: false,
+        allowNull: true,
         get: function () {
             return this.getDataValue('deleteMark');
         },
@@ -176,7 +177,7 @@ module.exports = orm.accountdb.define('module', {
     enableMark: {
         field: 'enable_mark',
         type: orm.Sequelize.INTEGER,
-        allowNull: false,
+        allowNull: true,
         get: function () {
             return this.getDataValue('enableMark');
         },
@@ -188,6 +189,7 @@ module.exports = orm.accountdb.define('module', {
         field: 'description',
         type: orm.Sequelize.STRING,
         allowNull: false,
+        defaultValue: '',
         get: function () {
             return this.getDataValue('description');
         },
@@ -207,9 +209,9 @@ module.exports = orm.accountdb.define('module', {
         }
     },
     createUserName: {
-        field: 'create_user_name',
+        field: 'create_username',
         type: orm.Sequelize.STRING,
-        allowNull: true,
+        allowNull: false,
         get: function () {
             return this.getDataValue('createUserName');
         },
@@ -218,7 +220,7 @@ module.exports = orm.accountdb.define('module', {
         }
     },
     updateUserId: {
-        field: 'update_user_name',
+        field: 'update_user_id',
         type: orm.Sequelize.INTEGER,
         allowNull: true,
         get: function () {
@@ -229,7 +231,7 @@ module.exports = orm.accountdb.define('module', {
         }
     },
     updateUserName: {
-        field: 'update_user_name',
+        field: 'update_username',
         type: orm.Sequelize.STRING,
         allowNull: true,
         get: function () {
@@ -253,7 +255,8 @@ module.exports = orm.accountdb.define('module', {
     updateTime: {
         field: 'update_time',
         type: orm.Sequelize.DATE,
-        allowNull: true,
+        allowNull: false,
+        defaultValue: new Date(),
         get: function () {
             return this.getDataValue('updateTime');
         },
@@ -264,5 +267,5 @@ module.exports = orm.accountdb.define('module', {
 }, {
     freezeTableName: true,
     charset: 'utf8',
-    timstamps: false
+    timestamps: false
 });

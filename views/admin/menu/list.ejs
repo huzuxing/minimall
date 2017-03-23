@@ -33,7 +33,7 @@ Purchase: http://wrapbootstrap.com
                             </div>
                             <div class="widget-body">
                                 <div class="table-toolbar">
-                                    <a id="editabledatatable_new" href="tools/detail" class="btn btn-info">
+                                    <a id="new" href="javascript:;" class="btn btn-info">
                                         <i class="fa fa-plus-square"></i>
                                         添加菜单
                                     </a>
@@ -73,12 +73,16 @@ Purchase: http://wrapbootstrap.com
                                         <td><%=bean.zh_name%></td>
                                         <td><%=bean.is_display == 0 ? '可见' : '不可见'%></td>
                                         <td data-id="<%=bean.id%>">
-                                            <a href="tools/detail?id=<%=bean.id%>" class="btn btn-info btn-xs edit"><i
+                                            <a class="btn btn-info btn-xs edit"><i
                                                         class="fa fa-edit"></i> 编辑</a>
-                                            <a href="tools/check?id=<%=bean.id%>" class="btn btn-info btn-xs check"><i
+                                            <a class="btn btn-info btn-xs check"><i
                                                         class="fa fa-check"></i> 查看</a>
-                                            <a href="javascript:;" class="btn btn-danger btn-xs delete"><i
+                                            <a data-url="delete" class="btn btn-danger btn-xs delete"><i
                                                         class="fa fa-trash-o"></i> 删除</a>
+                                            <a class="btn btn-info btn-xs addChild">
+                                                <i class="fa fa-plus-square"></i>
+                                                添加子菜单
+                                            </a>
                                         </td>
                                     </tr>
                                     <% }) %>
@@ -136,28 +140,31 @@ Purchase: http://wrapbootstrap.com
 <!--  /Body -->
 <% include ../common/scripts.ejs %>
 <script type="application/javascript">
-    $(function () {
-        $(".delete").click(function () {
-            var id = $(this).parent().data("id");
-            var index = layer.confirm("您确定要删除工器具[" + id + "]吗?", function () {
-                $.ajax({
-                    url: 'tools/delete',
-                    type: 'POST',
-                    data: {id: id},
-                    dataType: 'JSON',
-                    success: function (result) {
-                        if (200 == result.status) {
-                            var i = layer.alert("操作成功!", function () {
-                                layer.closeAll();
-                                location.reload();
-                            });
-                        }
-                        else
-                            layer.alert(result.msg);
-                    }
-                });
-                layer.close(index);
-            });
+    $('#new,.edit').click(function () {
+        let id = $(this).parent().data('id');
+        layer.open({
+            type : 2,
+            title : '',
+            content : 'detail/' + id,
+            area : ["800px", "530px"]
+        });
+    });
+    $('.addChild').click(function () {
+        let id = $(this).parent().data('id');
+        layer.open({
+            type : 2,
+            title : '',
+            content : 'addChild/' + id,
+            area : ["800px", "530px"]
+        });
+    });
+    $('.check').click(function () {
+        let id = $(this).parent().data('id');
+        layer.open({
+            type : 2,
+            title : '',
+            content : 'check/' + id,
+            area : ["800px", "530px"]
         });
     });
 </script>

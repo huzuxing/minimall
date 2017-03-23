@@ -34,6 +34,7 @@ class ModuleService extends BaseService {
             if (ids && ids instanceof Array) {
                 sql += ' and m.id in(' + ids + ')';
             }
+            sql += ' order by m.create_time desc';
             orm.accountdb.query(sql, {type: orm.Sequelize.QueryTypes.SELECT}).then(result => {
                resolve(result);
             }).catch(ex => {
@@ -43,12 +44,15 @@ class ModuleService extends BaseService {
         });
     }
 
-    getMenus(bean) {
+    getMenus(bean, pageNo, pageSize) {
         return new Promise(function (resovle, reject) {
             let sql = 'select * from module m where 1=1';
             if (bean && bean.zhName) {
-                sql += ' and m.zh_name like \'% ' + bean.zhName + '%\'';
+                sql += ' and m.zh_name like \'%' + bean.zhName + '%\'';
             }
+            sql += ' order by m.create_time desc';
+            sql += ' limit ' + ((pageNo - 1) * pageSize) + ',';
+            sql += pageSize;
             orm.accountdb.query(sql, {type: orm.Sequelize.QueryTypes.SELECT}).then(result => {
                 resovle(result);
             }).catch(ex => {
@@ -58,14 +62,40 @@ class ModuleService extends BaseService {
         });
     }
 
+
     // 统计
-    count() {
-        return new Promise(function (resolve, reject) {
-            modules.count().then(result => {
-                resolve(result);
+    count(bean) {
+        return new Promise(function (resovle, reject) {
+            let sql = 'select count(*) count from module m where 1=1';
+            if (bean && bean.zhName) {
+                sql += ' and m.zh_name like \'%' + bean.zhName + '%\'';
+            }
+            console.log(sql);
+            orm.accountdb.query(sql, {type: orm.Sequelize.QueryTypes.SELECT}).then(result => {
+                resovle(result[0].count);
             }).catch(ex => {
                 console.error(ex);
                 reject(ex);
+            });
+        });
+    }
+
+    //获取单个menu
+    getById(id) {
+        return super.getById(modules, id);
+    }
+    // 判断是否有子数据
+    getByParentId(id) {
+        return new Promise(function (resolve,reject) {
+            modules.findAll({
+                where : {
+                    parentId : id
+                }
+            }).then(result => {
+                resolve(result);
+            }).catch(ex => {
+                console.error(ex);
+                throw new Error(ex);
             });
         });
     }
