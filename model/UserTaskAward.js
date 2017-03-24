@@ -4,7 +4,7 @@
 'use strict';
 let orm = require('./orm');
 
-module.exports = orm.accountdb.define('user_task_award', {
+module.exports = orm.accountdb.define('cyc_user_task_award', {
         id: {
             field: 'id',
             type: orm.Sequelize.INTEGER,

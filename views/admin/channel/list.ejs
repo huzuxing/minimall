@@ -1,0 +1,171 @@
+﻿<!DOCTYPE html>
+<!--
+BeyondAdmin - Responsive Admin Dashboard Template build with Twitter Bootstrap 3.2.0
+Version: 1.0.0
+Purchase: http://wrapbootstrap.com
+-->
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!-- Head -->
+<head>
+    <meta charset="utf-8"/>
+    <title>后台管理系统-栏目管理</title>
+    <% include ../common/style.ejs %>
+</head>
+<!-- /Head -->
+<!-- Body -->
+<body>
+<!-- Main Container -->
+<div class="main-container container-fluid">
+    <!-- Page Container -->
+    <div class="page-container">
+        <!-- Page Sidebar -->
+        <!-- /Page Sidebar -->
+        <!-- Page Content -->
+        <div class="page-container">
+            <!-- Page Body -->
+            <div class="page-body">
+                <div class="row">
+                    <div class="col-xs-12 col-md-12">
+                        <div class="widget">
+                            <div class="widget-header ">
+                                <span class="widget-caption">菜单列表</span>
+                            </div>
+                            <div class="widget-body">
+                                <div class="table-toolbar">
+                                    <a id="new" href="javascript:;" class="btn btn-info">
+                                        <i class="fa fa-plus-square"></i>
+                                        添加菜单
+                                    </a>
+                                </div>
+                                <div id="expandabledatatable_filter" class="dataTables_filter">
+                                    <form method="get" action="/admin/menu/manage">
+                                        <label>
+                                            <input type="search" name="q" class="form-control input-sm"
+                                                   aria-controls="expandabledatatable" value="<%=page.q%>">
+                                        </label>
+                                        <label>
+                                            &nbsp;<input type="submit" class="btn btn-info" value="查询"/>
+                                        </label>
+                                    </form>
+                                </div>
+                                <table class="table table-striped table-hover table-bordered" id="editabledatatable">
+                                    <thead>
+                                    <tr role="row">
+                                        <th>
+                                            菜单ID
+                                        </th>
+                                        <th>
+                                            菜单名称
+                                        </th>
+                                        <th>
+                                            菜单状态
+                                        </th>
+                                        <th>
+                                            操作
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <% menus.forEach(function (bean) { %>
+                                    <tr>
+                                        <td><%=bean.id%></td>
+                                        <td><%=bean.zh_name%></td>
+                                        <td><%=bean.is_display == 0 ? '可见' : '不可见'%></td>
+                                        <td data-id="<%=bean.id%>">
+                                            <a class="btn btn-info btn-xs edit"><i
+                                                        class="fa fa-edit"></i> 编辑</a>
+                                            <a class="btn btn-info btn-xs check"><i
+                                                        class="fa fa-check"></i> 查看</a>
+                                            <a data-url="delete" class="btn btn-danger btn-xs delete"><i
+                                                        class="fa fa-trash-o"></i> 删除</a>
+                                            <a class="btn btn-info btn-xs addChild">
+                                                <i class="fa fa-plus-square"></i>
+                                                添加子菜单
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <% }) %>
+                                    </tbody>
+                                </table>
+                                <div class="row DTTTFooter">
+                                    <div class="col-sm-6">
+                                        <div class="dataTables_info" id="editabledatatable_info" role="alert"
+                                             aria-live="polite" aria-relevant="all">
+                                            共<%=page.totalCount%>条数据 | <%=page.totalPage%> 页
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="dataTables_paginate paging_bootstrap"
+                                             id="editabledatatable_paginate">
+                                            <ul class="pagination">
+                                                <li class="prev">
+                                                    <a href="/admin/menu/manage?pageNo=1&q=<%=page.q%>">首页</a>
+                                                </li>
+                                                <li class="prev">
+                                                    <a href="/admin/menu/manage?pageNo=<%=page.prePage%>&q=<%=page.q%>">上一页</a>
+                                                </li>
+                                                <%
+                                                'use strict';
+                                                for(var i = 1;i < page.totalPage + 1;i++) {%>
+                                                    <li class="<%=page.pageNo == i ? 'active' : ''%>">
+                                                        <a href="/admin/menu/manage?pageNo=<%=i%>&q=<%=page.q%>"><%=i%></a>
+                                                    </li>
+                                                <%}%>
+                                                <li class="next">
+                                                    <a href="/admin/menu/manage?pageNo=<%=page.nextPage%>&q=<%=page.q%>">下一页</a>
+                                                </li>
+                                                <li class="prev">
+                                                    <a href="/admin/menu/manage?pageNo=<%=page.totalPage%>&q=<%=page.q%>">尾页</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /Page Body -->
+        </div>
+        <!-- /Page Content -->
+    </div>
+    <!-- /Page Container -->
+    <!-- Main Container -->
+
+</div>
+
+</body>
+<!--  /Body -->
+<% include ../common/scripts.ejs %>
+<script type="application/javascript">
+    $('#new,.edit').click(function () {
+        let id = $(this).parent().data('id');
+        layer.open({
+            type : 2,
+            title : '',
+            content : 'detail/' + id,
+            area : ["800px", "530px"]
+        });
+    });
+    $('.addChild').click(function () {
+        let id = $(this).parent().data('id');
+        layer.open({
+            type : 2,
+            title : '',
+            content : 'addChild/' + id,
+            area : ["800px", "530px"]
+        });
+    });
+    $('.check').click(function () {
+        let id = $(this).parent().data('id');
+        layer.open({
+            type : 2,
+            title : '',
+            content : 'check/' + id,
+            area : ["800px", "530px"]
+        });
+    });
+</script>
+</html>

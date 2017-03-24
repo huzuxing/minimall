@@ -2,7 +2,7 @@
 
 let orm = require('./orm');
 
-module.exports = orm.accountdb.define('module', {
+module.exports = orm.accountdb.define('cyc_module', {
     id: {
         field: 'id',
         type: orm.Sequelize.INTEGER,
@@ -19,9 +19,7 @@ module.exports = orm.accountdb.define('module', {
     parentId: {
         field: 'parent_id',
         type: orm.Sequelize.INTEGER,
-        autoincrement: true,
-        primaryKey: true,
-        unique: true,
+        allowNull: false,
         get: function () {
             return this.getDataValue('parentId');
         },

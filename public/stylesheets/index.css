@@ -79,7 +79,7 @@ a:hover,a:active,a:focus{outline:none;text-decoration:none;color:#72afd2}
 .sidebar-menu .treeview-menu{display:none;list-style:none;padding:0;margin:0;padding-left:20px;padding-top: 5px;padding-bottom:5px;}
 .sidebar-menu .treeview-menu .treeview-menu{padding-left:20px}
 .sidebar-menu .treeview-menu>li{margin:0;line-height:25px;}
-.sidebar-menu .treeview-menu>li>a{padding:5px 5px 5px 15px;display:block;font-size:12px}
+.sidebar-menu .treeview-menu>li>a{padding:5px 5px 5px 15px;display:block;font-size:14px}
 .sidebar-menu .treeview-menu>li>a>.fa,.sidebar-menu .treeview-menu>li>a>.glyphicon,.sidebar-menu .treeview-menu>li>a>.ion{width:20px;}
 .sidebar-menu .treeview-menu>li>a>.fa-angle-left,.sidebar-menu .treeview-menu>li>a>.fa-angle-down{width:auto}
 @media (min-width:768px){.sidebar-mini.sidebar-collapse .content-wrapper,.sidebar-mini.sidebar-collapse .right-side,.sidebar-mini.sidebar-collapse .main-footer{margin-left:50px !important;z-index:840}

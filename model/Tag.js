@@ -1,7 +1,8 @@
 'use strict';
 
 let orm = require('./orm');
-module.exports = orm.accountdb.define('cyc_group_permission', {
+
+module.exports = orm.accountdb.define('cyc_content_tag', {
     id: {
         field: 'id',
         type: orm.Sequelize.INTEGER,
@@ -15,40 +16,38 @@ module.exports = orm.accountdb.define('cyc_group_permission', {
             this.setDataValue('id', val);
         }
     },
-    groupId: {
-        field: 'group_id',
-        type: orm.Sequelize.INTEGER,
+    name: {
+        field: 'name',
+        type: orm.Sequelize.STRING,
         allowNull: false,
-        defaultValue: '',
         get: function () {
-            return this.getDataValue('groupId');
+            return this.getDataValue('name');
         },
         set: function (val) {
-            this.setDataValue('groupId', val);
+            this.setDataValue('name', val);
         }
     },
-    permissionId: {
-        field: 'permission_id',
+    refCounter: {
+        field: 'ref_counter',
         type: orm.Sequelize.INTEGER,
         allowNull: false,
-        defaultValue: 0,
+        defaultValue: 1,
         get: function () {
-            return this.getDataValue('permissionId');
+            return this.getDataValue('refCounter');
         },
         set: function (val) {
-            this.setDataValue('permissionId', val);
+            this.setDataValue('refCounter', val);
         }
     },
-    cate: {
-        field: 'cate',
+    userId: {
+        field: 'user_id',
         type: orm.Sequelize.INTEGER,
         allowNull: false,
-        defaultValue: 0,
         get: function () {
-            return this.getDataValue('cate');
+            return this.getDataValue('userId');
         },
         set: function (val) {
-            this.setDataValue('cate', val);
+            this.setDataValue('userId', val);
         }
     }
 }, {

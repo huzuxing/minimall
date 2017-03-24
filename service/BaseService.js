@@ -36,7 +36,14 @@ module.exports = class BaseService {
         return new Promise(function (resolve, reject) {
             dbEntity.destroy({
                 where : {
-                    id : id
+                    $and: [
+                        {
+                            id: id
+                        },
+                        {
+                            allowDelete: 0//允许删除
+                        }
+                    ]
                 }
             }).then(result => {
                 resolve(result);

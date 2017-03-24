@@ -7,10 +7,17 @@ const request = require('request');
 const service = require('../../service/index');
 
 /**
- * 获取菜单
+ * 获取栏目
  */
 router.get('/', function (req, res) {
-    res.render();
+    let admin = req.session.admin;
+    let menus;
+    service.moduleService.list(menus).then(result => {
+        res.jsonp({code : CONSTANT.SUCCESS_CODE, data : JSON.stringify(result)});
+    }).catch(ex => {
+        console.error(ex);
+        res.jsonp({code : CONSTANT.FAIL_CODE, msg : ex.message});
+    });
 });
 
 /**
@@ -48,6 +55,7 @@ router.get('/addChild/:id', function (req, res) {
         res.jsonp({code : CONSTANT.FAIL_CODE, msg : ex.message});
     });
 });
+
 
 router.get('/manage', function (req, res) {
     let pageNo = req.query.pageNo || 1;

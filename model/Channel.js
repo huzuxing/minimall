@@ -1,7 +1,8 @@
 'use strict';
 
 let orm = require('./orm');
-module.exports = orm.accountdb.define('cyc_permission', {
+
+module.exports = orm.accountdb.define('cyc_content', {
     id: {
         field: 'id',
         type: orm.Sequelize.INTEGER,
@@ -19,7 +20,6 @@ module.exports = orm.accountdb.define('cyc_permission', {
         field: 'name',
         type: orm.Sequelize.STRING,
         allowNull: false,
-        defaultValue: '',
         get: function () {
             return this.getDataValue('name');
         },
@@ -39,15 +39,49 @@ module.exports = orm.accountdb.define('cyc_permission', {
             this.setDataValue('parentId', val);
         }
     },
-    description: {
-        field: 'description',
+    userId: {
+        field: 'user_id',
+        type: orm.Sequelize.INTEGER,
+        allowNull: false,
+        get: function () {
+            return this.getDataValue('userId');
+        },
+        set: function (val) {
+            this.setDataValue('userId', val);
+        }
+    },
+    channelPath: {
+        field: 'channel_path',
         type: orm.Sequelize.STRING,
         allowNull: true,
         get: function () {
-            return this.getDataValue('description');
+            return this.getDataValue('channelPath');
         },
         set: function (val) {
-            this.setDataValue('description', val);
+            this.setDataValue('channelPath', val);
+        }
+    },
+    sort: {
+        field: 'sort',
+        type: orm.Sequelize.INTEGER,
+        allowNull: true,
+        defaultValue: 0,
+        get: function () {
+            return this.getDataValue('sort');
+        },
+        set: function (val) {
+            this.setDataValue('sort', val);
+        }
+    },
+    createTime: {
+        field: 'create_time',
+        type: orm.Sequelize.DATE,
+        allowNull: false,
+        get: function () {
+            return this.getDataValue('createTime');
+        },
+        set: function (val) {
+            this.setDataValue('createTime', val);
         }
     }
 }, {

@@ -12,6 +12,7 @@ let user_url = config.WX_PUB_PAY.USER_URL;
 const service = require('../../service/index');
 const adminUser = require('./users');
 const menuAct = require('./MenuAct');
+const channelAct = require('./ChannelAct');
 
 
 /**
@@ -54,5 +55,6 @@ router.get('/default', function (req, res) {
 
 router.use('/user', adminUser);
 router.use('/menu', menuAct);
+router.use('/channel', channelAct);
 
 module.exports = router;

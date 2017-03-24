@@ -344,16 +344,16 @@
                         $("#sidebar-menu li a").click(function () {
                             var d = $(this), e = d.next();
                             if (e.is(".treeview-menu") && e.is(":visible")) {
-                                e.slideUp(500, function () {
+                                e.slideUp(200, function () {
                                     e.removeClass("menu-open")
                                 }),
                                     e.parent("li").removeClass("active")
                             } else if (e.is(".treeview-menu") && !e.is(":visible")) {
                                 var f = d.parents("ul").first(),
-                                    g = f.find("ul:visible").slideUp(500);
+                                    g = f.find("ul:visible").slideUp(200);
                                 g.removeClass("menu-open");
                                 var h = d.parent("li");
-                                e.slideDown(500, function () {
+                                e.slideDown(200, function () {
                                     e.addClass("menu-open"),
                                         f.find("li.active").removeClass("active"),
                                         h.addClass("active");
@@ -371,6 +371,8 @@
                             e.is(".treeview-menu");
                         });
                     }
+                    else
+                        layer.alert(result.msg);
                 },
                 error :function () {
                     layer.msg('获取菜单失败');

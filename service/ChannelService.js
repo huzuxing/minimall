@@ -4,9 +4,9 @@
 'use strict';
 let orm = require('../model/orm');
 let BaseService = require('./BaseService');
-let modules = require('../model/Module');
+let channel = require('../model/Channel');
 
-class ModuleService extends BaseService {
+class ChannelService extends BaseService {
 
     constructor() {
         super();
@@ -14,17 +14,17 @@ class ModuleService extends BaseService {
 
     //持久化资源module
     save(bean) {
-        return super.save(modules, bean);
+        return super.save(channel, bean);
     }
 
     //更新资源module
     update(bean) {
-        return super.update(modules, bean);
+        return super.update(channel, bean);
     }
 
     //删除资源module
     delete(id) {
-        return super.destroy(modules, id);
+        return super.destroy(channel, id);
     }
     
     //获取菜单列表
@@ -82,12 +82,12 @@ class ModuleService extends BaseService {
 
     //获取单个menu
     getById(id) {
-        return super.getById(modules, id);
+        return super.getById(channel, id);
     }
     // 判断是否有子数据
     getByParentId(id) {
         return new Promise(function (resolve,reject) {
-            modules.findAll({
+            channel.findAll({
                 where : {
                     parentId : id
                 }
@@ -100,4 +100,4 @@ class ModuleService extends BaseService {
         });
     }
 }
-module.exports = new ModuleService();
+module.exports = new ChannelService();

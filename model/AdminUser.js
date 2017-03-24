@@ -1,7 +1,7 @@
 'use strict';
 
 let orm = require('./orm');
-module.exports = orm.accountdb.define('admin_user', {
+module.exports = orm.accountdb.define('cyc_admin_user', {
     id: {
         field: 'id',
         type: orm.Sequelize.INTEGER,
