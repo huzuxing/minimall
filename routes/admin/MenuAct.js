@@ -10,7 +10,12 @@ const service = require('../../service/index');
  * 获取菜单
  */
 router.get('/', function (req, res) {
-    res.render();
+    service.moduleService.list().then(result => {
+        res.jsonp({code : CONSTANT.SUCCESS_CODE, data : result});
+    }).catch(ex => {
+        console.error(ex);
+        res.jsonp({code: CONSTANT.FAIL_CODE, msg: ex.message});
+    });
 });
 
 /**
@@ -28,7 +33,7 @@ router.get('/detail/:id', function (req, res) {
         res.render('admin/menu/detail');
     }).catch(ex => {
         console.error(ex);
-        res.jsonp({code : CONSTANT.FAIL_CODE, msg : ex.message});
+        res.jsonp({code: CONSTANT.FAIL_CODE, msg: ex.message});
     });
 });
 
@@ -39,13 +44,13 @@ router.get('/addChild/:id', function (req, res) {
     let id = req.params.id;
     service.moduleService.list().then(result => {
         res.locals.bean = {
-            parentId : id
+            parentId: id
         };
         res.locals.menus = result;
         res.render('admin/menu/detail');
     }).catch(ex => {
         console.error(ex);
-        res.jsonp({code : CONSTANT.FAIL_CODE, msg : ex.message});
+        res.jsonp({code: CONSTANT.FAIL_CODE, msg: ex.message});
     });
 });
 
@@ -54,13 +59,13 @@ router.get('/manage', function (req, res) {
     let pageSize = req.query.pageSize || 10;
     let q = req.query.q;
     let bean = {
-        zhName : q
+        zhName: q
     };
     let page = {
-        pageNo : pageNo,
-        pageSize : pageSize,
+        pageNo: pageNo,
+        pageSize: pageSize,
         q: q,
-        prePage : (pageNo - 1) <= 0 ? 1 : pageNo - 1,
+        prePage: (pageNo - 1) <= 0 ? 1 : pageNo - 1,
     };
     service.moduleService.count(bean).then(count => {
         page.totalCount = count;
@@ -73,7 +78,7 @@ router.get('/manage', function (req, res) {
         res.render('admin/menu/list');
     }).catch(ex => {
         console.error(ex);
-        res.jsonp({code : CONSTANT.FAIL_CODE, msg : ex.message});
+        res.jsonp({code: CONSTANT.FAIL_CODE, msg: ex.message});
     });
 });
 
@@ -86,7 +91,7 @@ function save(req, res) {
     let bean = {};
     let flag = true;
     for (let i in req.body) {
-        if ("id"  == i && "" == req.body[i]) {
+        if ("id" == i && "" == req.body[i]) {
             continue;
         }
         bean[i] = req.body[i];
@@ -96,14 +101,14 @@ function save(req, res) {
         }
     }
     if (!flag) {
-        res.jsonp({code : CONSTANT.PARAM_FAIL_CODE, msg : CONSTANT.PARAM_FAIL_MSG});
+        res.jsonp({code: CONSTANT.PARAM_FAIL_CODE, msg: CONSTANT.PARAM_FAIL_MSG});
         return;
     }
     if (bean.id) {
         service.moduleService.getById(bean.id).then(result => {
             if (result && result.id > 0) {
                 result = result.get({
-                    plain : true
+                    plain: true
                 });
                 for (let key in bean) {
                     result[key] = bean[key];
@@ -113,12 +118,12 @@ function save(req, res) {
                 result.updateUserName = req.session.admin.account;
                 service.moduleService.update(result).then(result => {
                     if (result)
-                        res.jsonp({code : CONSTANT.SUCCESS_CODE});
+                        res.jsonp({code: CONSTANT.SUCCESS_CODE});
                     else
-                        res.jsonp({code : CONSTANT.FAIL_CODE, msg : CONSTANT.COMMON_MSG});
+                        res.jsonp({code: CONSTANT.FAIL_CODE, msg: CONSTANT.COMMON_MSG});
                 }).catch(ex => {
                     console.error(ex);
-                    res.jsonp({code : CONSTANT.FAIL_CODE, msg : ex.message});
+                    res.jsonp({code: CONSTANT.FAIL_CODE, msg: ex.message});
                 });
             }
             else
@@ -131,12 +136,12 @@ function save(req, res) {
         bean.createUserName = req.session.admin.account;
         service.moduleService.save(bean).then(result => {
             if (result)
-                res.jsonp({code : CONSTANT.SUCCESS_CODE});
+                res.jsonp({code: CONSTANT.SUCCESS_CODE});
             else
-                res.jsonp({code : CONSTANT.FAIL_CODE, msg : CONSTANT.COMMON_MSG});
+                res.jsonp({code: CONSTANT.FAIL_CODE, msg: CONSTANT.COMMON_MSG});
         }).catch(ex => {
             console.error(ex);
-            res.jsonp({code : CONSTANT.FAIL_CODE, msg : ex.message});
+            res.jsonp({code: CONSTANT.FAIL_CODE, msg: ex.message});
         });
     }
 }
@@ -164,18 +169,18 @@ function remove(req, res) {
                 return service.moduleService.delete(id);
         }).then(result => {
             if (result) {
-                res.jsonp({code : CONSTANT.SUCCESS_CODE});
+                res.jsonp({code: CONSTANT.SUCCESS_CODE});
             }
             else {
-                res.jsonp({code : CONSTANT.FAIL_CODE, msg : CONSTANT.COMMON_MSG});
+                res.jsonp({code: CONSTANT.FAIL_CODE, msg: CONSTANT.COMMON_MSG});
             }
         }).catch(ex => {
             console.error(ex);
-            res.jsonp({code : CONSTANT.FAIL_CODE, msg : ex.message});
+            res.jsonp({code: CONSTANT.FAIL_CODE, msg: ex.message});
         });
     }
     else
-        res.jsonp({code : CONSTANT.PARAM_FAIL_CODE, msg : CONSTANT.PARAM_FAIL_MSG});
+        res.jsonp({code: CONSTANT.PARAM_FAIL_CODE, msg: CONSTANT.PARAM_FAIL_MSG});
 }
 
 //查看
@@ -183,7 +188,7 @@ router.get('/check/:id', function (req, res) {
     let id = req.params.id;
     let bean = {};
     if (!id) {
-        res.jsonp({code : CONSTANT.PARAM_FAIL_CODE, msg : CONSTANT.PARAM_FAIL_MSG});
+        res.jsonp({code: CONSTANT.PARAM_FAIL_CODE, msg: CONSTANT.PARAM_FAIL_MSG});
     }
     else {
         service.moduleService.getById(id).then(result => {
@@ -198,10 +203,10 @@ router.get('/check/:id', function (req, res) {
             bean.parentName = (result && result.id && result.id > 0) ? result.zhName : '';
             bean.createTime = new Date(bean.createTime).format('yyyy-MM-dd hh:mm:ss');
             bean.updateTime = new Date(bean.updateTime).format('yyyy-MM-dd hh:mm:ss');
-            res.render('admin/menu/check', {bean : bean});
+            res.render('admin/menu/check', {bean: bean});
         }).catch(ex => {
             console.error(ex);
-            res.jsonp({code : CONSTANT.FAIL_CODE, msg : ex.message});
+            res.jsonp({code: CONSTANT.FAIL_CODE, msg: ex.message});
         });
     }
 });

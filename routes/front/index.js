@@ -44,7 +44,7 @@ Date.prototype.format = function (fmt) {
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-    res.render('index', {title: 'Express'});
+    res.render('front/index', {title: 'Express'});
 });
 
 router.get('/default', function (req, res) {

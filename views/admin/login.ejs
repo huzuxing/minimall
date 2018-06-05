@@ -70,11 +70,13 @@ Purchase: http://wrapbootstrap.com
     $(function () {
         $("#login").click(function () {
             if ("" == $("input[name=username]").val()) {
-                layer.alert("请输入用户名!");
+                $('.error').find('span').text("清输入用户名！");
+                $('.error').css({display : 'block'});
                 return;
             }
             if ("" == $("input[name=password]").val()) {
-                layer.alert("请输入密码!");
+                $('.error').find('span').text("请输入密码！");
+                $('.error').css({display : 'block'});
                 return;
             }
             $("#jvForm").ajaxSubmit({

@@ -304,7 +304,7 @@
                 dataType : 'JSON',
                 success : function (result) {
                     if (200 == result.code) {
-                        let data = JSON.parse(result.data);
+                        let data = result.data;
                         var _html = "";
                         $.each(data, function (i) {
                             var row = data[i];

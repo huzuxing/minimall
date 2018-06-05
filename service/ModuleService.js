@@ -30,7 +30,7 @@ class ModuleService extends BaseService {
     //获取菜单列表
     list(ids) {
         return new Promise(function (resolve, reject) {
-            let sql = 'select * from cyc_module m where 1=1';
+            let sql = 'select * from cyc_module m where 1=1 and m.is_display=0';
             if (ids && ids instanceof Array) {
                 sql += ' and m.id in(' + ids + ')';
             }

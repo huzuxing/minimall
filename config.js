@@ -8,7 +8,7 @@ let config = {
         host : 'localhost',
         db   : 'common',
         user : 'root',
-        pwd  : '1231231'
+        pwd  : '1234'
     },
     WX_PUB_PAY: {
         UTL:'https://api.mch.weixin.qq.com/pay/unifiedorder',
