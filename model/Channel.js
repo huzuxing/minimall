@@ -2,7 +2,7 @@
 
 let orm = require('./orm');
 
-module.exports = orm.accountdb.define('cyc_content', {
+module.exports = orm.accountdb.define('cyc_channel', {
     id: {
         field: 'id',
         type: orm.Sequelize.INTEGER,
@@ -30,7 +30,7 @@ module.exports = orm.accountdb.define('cyc_content', {
     parentId: {
         field: 'parent_id',
         type: orm.Sequelize.INTEGER,
-        allowNull: false,
+        allowNull: true,
         defaultValue: 0,
         get: function () {
             return this.getDataValue('parentId');
@@ -39,21 +39,10 @@ module.exports = orm.accountdb.define('cyc_content', {
             this.setDataValue('parentId', val);
         }
     },
-    userId: {
-        field: 'user_id',
-        type: orm.Sequelize.INTEGER,
-        allowNull: false,
-        get: function () {
-            return this.getDataValue('userId');
-        },
-        set: function (val) {
-            this.setDataValue('userId', val);
-        }
-    },
     channelPath: {
         field: 'channel_path',
         type: orm.Sequelize.STRING,
-        allowNull: true,
+        allowNull: false,
         get: function () {
             return this.getDataValue('channelPath');
         },

@@ -310,7 +310,7 @@
                             var row = data[i];
                             if (row.parent_id == "0") {
                                 _html += '<li class="treeview">';
-                                _html += '<a href="' + row.url + '">'
+                                _html += '<a href="' + row.url + '" target="' + row.target + '">'
                                 _html += '<i class="' + row.icon + '"></i><span>' + row.zh_name + '</span><i class="fa fa-angle-left pull-right"></i>'
                                 _html += '</a>';
                                 var childNodes = $.learunindex.jsonWhere(data, function (v) { return v.parent_id == row.id });

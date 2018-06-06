@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html>
+<!--
+BeyondAdmin - Responsive Admin Dashboard Template build with Twitter Bootstrap 3.2.0
+Version: 1.0.0
+Purchase: http://wrapbootstrap.com
+-->
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!-- Head -->
+<head>
+    <meta charset="utf-8"/>
+    <title>后台管理系统-工器具管理</title>
+    <% include ../common/style.ejs %>
+    <link href="/stylesheets/bootstrap-select.min.css" rel="stylesheet"/>
+    <!--Skin Script: Place this script in head to load scripts for skins and rtl support-->
+    <style type="text/css">
+        .page-container {
+            display: block;
+            /* margin-left: 224px; */
+            margin-right: 0;
+            margin-top: 0;
+            min-height: 100%;
+            padding: 0;
+        }
+
+        input[type=checkbox] {
+            opacity: 1;
+            position: relative;
+            left: 0px;
+            z-index: 12;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .black_overlay {
+            display: none;
+            position: absolute;
+            top: 0%;
+            left: 0%;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            z-index: 1001;
+            -moz-opacity: 0.8;
+            opacity: .80;
+            filter: alpha(opacity=80);
+        }
+
+        .white_content {
+            display: none;
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            width: 30%;
+            height: 50%;
+            border: 16px solid lightblue;
+            background-color: white;
+            z-index: 1002;
+            overflow: auto;
+        }
+
+        .white_content_small {
+            display: none;
+            position: absolute;
+            top: 20%;
+            left: 30%;
+            width: 40%;
+            height: 50%;
+            border: 16px solid lightblue;
+            background-color: white;
+            z-index: 1002;
+            overflow: auto;
+        }
+    </style>
+</head>
+<!-- /Head -->
+<!-- Body -->
+<body>
+<!-- Main Container -->
+<div class="main-container container-fluid">
+    <!-- Page Container -->
+    <div class="page-container">
+        <!-- Page Body -->
+        <div class="page-body">
+            <div class="row">
+                <div class="col-lg-12 col-sm-12 col-xs-12">
+                    <div class="widget">
+                        <div class="widget-header bordered-bottom bordered-palegreen">
+                            <span class="widget-caption">新增</span>
+                        </div>
+                        <div class="widget-body">
+                            <div>
+                                <form class="form-horizontal form-bordered" role="form" method="post"
+                                      action="/admin/channel" id="jvForm">
+                                    <input type="hidden" name="id" value="">
+                                    <div class="form-group">
+                                        <label for="name" class="col-sm-2 control-label no-padding-right">栏目名称</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" name="name" value="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="channelPath" class="col-sm-2 control-label no-padding-right">栏目访问路径</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" name="channelPath" value="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="sort" class="col-sm-2 control-label no-padding-right">排序</label>
+
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" name="sort" value="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-2 col-sm-10">
+                                            <button type="button" class="btn btn-palegreen save">保存</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Body -->
+    </div>
+    <!-- /Page Content -->
+</div>
+<!-- /Page Container -->
+<!-- Main Container -->
+</div>
+</body>
+<!--  /Body -->
+<% include ../common/scripts.ejs %>
+<script type="application/javascript" src="/javascripts/bootstrap-select.min.js"></script>
+<script type="application/javascript" src="/javascripts/jquery-form.js"></script>
+<script type="application/javascript">
+    $(function () {
+        $('.selectpicker').selectpicker({
+            'selectedText': ''
+        });
+        $(".return").click(function () {
+            location.href = "/admin/menu/manage";
+        });
+        $(".save").click(function () {
+            if ("" == $('input[name=name]').val() || "" == $('input[name=channelPath]').val()) {
+                layer.alert('请填写完相关数据');
+                return;
+            }
+            $("#jvForm").ajaxSubmit({
+                success : function (result) {
+                    if (200 == result.code) {
+                        let i = layer.alert("操作成功!", function () {
+                            window.parent.reloadContent();
+                            layer.closeAll();
+                        });
+                    }
+                    else {
+                        layer.alert(result.msg);
+                    }
+                }
+            });
+        });
+    });
+</script>
+</html>

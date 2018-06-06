@@ -30,7 +30,7 @@ class ChannelService extends BaseService {
     //获取菜单列表
     list(ids) {
         return new Promise(function (resolve, reject) {
-            let sql = 'select * from cyc_module m where 1=1';
+            let sql = 'select * from cyc_channel m where 1=1';
             if (ids && ids instanceof Array) {
                 sql += ' and m.id in(' + ids + ')';
             }
@@ -44,11 +44,13 @@ class ChannelService extends BaseService {
         });
     }
 
-    getMenus(bean, pageNo, pageSize) {
+    findPage(bean, pageNo, pageSize) {
+        pageNo = pageNo < 1 ? 1 : pageNo;
+        pageSize = pageSize < 10 ? 10 : pageSize;
         return new Promise(function (resovle, reject) {
-            let sql = 'select * from cyc_module m where 1=1';
+            let sql = 'select * from cyc_channel m where 1=1';
             if (bean && bean.zhName) {
-                sql += ' and m.zh_name like \'%' + bean.zhName + '%\'';
+                sql += ' and m.name like \'%' + bean.zhName + '%\'';
             }
             sql += ' order by m.create_time desc';
             sql += ' limit ' + ((pageNo - 1) * pageSize) + ',';
@@ -66,9 +68,9 @@ class ChannelService extends BaseService {
     // 统计
     count(bean) {
         return new Promise(function (resovle, reject) {
-            let sql = 'select count(*) count from cyc_module m where 1=1';
+            let sql = 'select count(*) count from cyc_channel m where 1=1';
             if (bean && bean.zhName) {
-                sql += ' and m.zh_name like \'%' + bean.zhName + '%\'';
+                sql += ' and m.name like \'%' + bean.zhName + '%\'';
             }
             console.log(sql);
             orm.accountdb.query(sql, {type: orm.Sequelize.QueryTypes.SELECT}).then(result => {
