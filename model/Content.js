@@ -147,6 +147,17 @@ module.exports = orm.accountdb.define('cyc_content', {
         set: function (val) {
             this.setDataValue('channelId', val);
         }
+    },
+    img: {
+        field: 'img',
+        type: orm.Sequelize.STRING,
+        allowNull: true,
+        get: function () {
+            return this.getDataValue('img');
+        },
+        set: function (val) {
+            this.setDataValue('img', val);
+        }
     }
 }, {
     freezeTableName: true,

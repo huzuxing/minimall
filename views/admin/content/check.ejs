@@ -98,7 +98,7 @@ Purchase: http://wrapbootstrap.com
                                         <label for="name" class="col-sm-2 control-label no-padding-right">栏目</label>
 
                                         <div class="col-sm-6">
-                                            <select name="channelId" class="selectpicker" data-live-search="true">
+                                            <select name="channelId" class="selectpicker" data-live-search="true" disabled="true">
                                                 <% if (channels) {
                                                 channels.forEach(function (bean) { %>
                                                 <option value="<%= bean.id %>"><%= bean.name %></option>
@@ -155,6 +155,13 @@ Purchase: http://wrapbootstrap.com
                                             <input type="text" class="form-control" name="content" value="<%=bean ? bean.content : ''%>" readonly="true">
                                         </div>
                                     </div>
+                                    <div class="form-group">
+                                        <label for="content"
+                                               class="col-sm-2 control-label no-padding-right">图片</label>
+                                        <div class="col-sm-6">
+                                            <input type="file" class="form-control" name="picture" value="">
+                                        </div>
+                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -179,9 +186,8 @@ Purchase: http://wrapbootstrap.com
         $('.selectpicker').selectpicker({
             'selectedText': ''
         });
-        $(".return").click(function () {
-            location.href = "/admin/menu/manage";
-        });
+        var channelId = "<%= bean ? bean.channelId : ''%>";
+        $('select[name="channelId"]').val(channelId).trigger('change');
         $(".save").click(function () {
             if ("" == $('input[name=name]').val() || "" == $('input[name=channelPath]').val()) {
                 layer.alert('请填写完相关数据');
