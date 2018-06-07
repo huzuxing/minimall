@@ -13,6 +13,7 @@ const service = require('../../service/index');
 const adminUser = require('./users');
 const menuAct = require('./MenuAct');
 const channelAct = require('./ChannelAct');
+const contentAct = require('./ContentAct');
 
 
 /**
@@ -56,5 +57,6 @@ router.get('/default', function (req, res) {
 router.use('/user', adminUser);
 router.use('/menu', menuAct);
 router.use('/channel', channelAct);
+router.use('/content', contentAct);
 
 module.exports = router;

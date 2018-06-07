@@ -4,9 +4,9 @@
 'use strict';
 let orm = require('../model/orm');
 let BaseService = require('./BaseService');
-let channel = require('../model/Channel');
+let Content = require('../model/Content');
 
-class ChannelService extends BaseService {
+class ContentExtService extends BaseService {
 
     constructor() {
         super();
@@ -14,23 +14,23 @@ class ChannelService extends BaseService {
 
     //持久化资源module
     save(bean) {
-        return super.save(channel, bean);
+        return super.save(Content, bean);
     }
 
     //更新资源module
     update(bean) {
-        return super.update(channel, bean);
+        return super.update(Content, bean);
     }
 
     //删除资源module
     delete(id) {
-        return super.destroy(channel, id);
+        return super.destroy(Content, id);
     }
     
     //获取菜单列表
     list(ids) {
         return new Promise(function (resolve, reject) {
-            let sql = 'select * from cyc_channel m where 1=1';
+            let sql = 'select * from cyc_content m where 1=1';
             if (ids && ids instanceof Array) {
                 sql += ' and m.id in(' + ids + ')';
             }
@@ -48,9 +48,9 @@ class ChannelService extends BaseService {
         pageNo = pageNo < 1 ? 1 : pageNo;
         pageSize = pageSize < 10 ? 10 : pageSize;
         return new Promise(function (resovle, reject) {
-            let sql = 'select * from cyc_channel m where 1=1';
-            if (bean && bean.name) {
-                sql += ' and m.name like \'%' + bean.name + '%\'';
+            let sql = 'select * from cyc_content m where 1=1';
+            if (bean && bean.title) {
+                sql += ' and m.title like \'%' + bean.title + '%\'';
             }
             sql += ' order by m.create_time desc';
             sql += ' limit ' + ((pageNo - 1) * pageSize) + ',';
@@ -68,9 +68,9 @@ class ChannelService extends BaseService {
     // 统计
     count(bean) {
         return new Promise(function (resovle, reject) {
-            let sql = 'select count(*) count from cyc_channel m where 1=1';
-            if (bean && bean.name) {
-                sql += ' and m.name like \'%' + bean.name + '%\'';
+            let sql = 'select count(*) count from cyc_content m where 1=1';
+            if (bean && bean.title) {
+                sql += ' and m.title like \'%' + bean.title + '%\'';
             }
             orm.accountdb.query(sql, {type: orm.Sequelize.QueryTypes.SELECT}).then(result => {
                 resovle(result[0].count);
@@ -83,7 +83,7 @@ class ChannelService extends BaseService {
 
     //获取单个menu
     getById(id) {
-        return super.getById(channel, id);
+        return super.getById(Content, id);
     }
     // 判断是否有子数据
     getByParentId(id) {
@@ -101,4 +101,4 @@ class ChannelService extends BaseService {
         });
     }
 }
-module.exports = new ChannelService();
+module.exports = new ContentExtService();

@@ -9,7 +9,7 @@ Purchase: http://wrapbootstrap.com
 <!-- Head -->
 <head>
     <meta charset="utf-8"/>
-    <title>后台管理系统-栏目管理</title>
+    <title>后台管理系统-内容列表</title>
     <% include ../common/style.ejs %>
 </head>
 <!-- /Head -->
@@ -29,17 +29,17 @@ Purchase: http://wrapbootstrap.com
                     <div class="col-xs-12 col-md-12">
                         <div class="widget">
                             <div class="widget-header ">
-                                <span class="widget-caption">栏目列表</span>
+                                <span class="widget-caption">内容列表</span>
                             </div>
                             <div class="widget-body">
                                 <div class="table-toolbar">
                                     <a id="new" href="javascript:;" class="btn btn-info">
                                         <i class="fa fa-plus-square"></i>
-                                        添加栏目
+                                        添加内容
                                     </a>
                                 </div>
                                 <div id="expandabledatatable_filter" class="dataTables_filter">
-                                    <form method="get" action="/admin/channel">
+                                    <form method="get" action="/admin/content">
                                         <label>
                                             <input type="search" name="q" class="form-control input-sm"
                                                    aria-controls="expandabledatatable" value="<%= page.q %>">
@@ -56,7 +56,13 @@ Purchase: http://wrapbootstrap.com
                                             ID
                                         </th>
                                         <th>
-                                            名称
+                                            标题
+                                        </th>
+                                        <th>
+                                            作者
+                                        </th>
+                                        <th>
+                                            是否发布
                                         </th>
                                         <th>
                                             操作
@@ -68,13 +74,15 @@ Purchase: http://wrapbootstrap.com
                                     data.forEach(function (bean) { %>
                                     <tr>
                                         <td><%= bean.id %></td>
-                                        <td><%= bean.name %></td>
+                                        <td><%= bean.title %></td>
+                                        <td><%= bean.author %></td>
+                                        <td><%= bean.is_publish == 0 ? "是" : "否" %></td>
                                         <td data-id="<%= bean.id %>">
                                             <a class="btn btn-info btn-xs edit"><i
                                                         class="fa fa-edit"></i> 编辑</a>
                                             <a class="btn btn-info btn-xs check"><i
                                                         class="fa fa-check"></i> 查看</a>
-                                            <a data-url="channel/delete" class="btn btn-danger btn-xs delete"><i
+                                            <a data-url="content/delete" class="btn btn-danger btn-xs delete"><i
                                                         class="fa fa-trash-o"></i> 删除</a>
                                         </td>
                                     </tr>
@@ -140,8 +148,8 @@ Purchase: http://wrapbootstrap.com
         layer.open({
             type: 2,
             title: '',
-            content: 'channel/add',
-            area: ["800px", "330px"]
+            content: 'content/add',
+            area: ["1000px", "630px"]
         });
     });
     $('.edit').click(function () {
@@ -149,8 +157,8 @@ Purchase: http://wrapbootstrap.com
         layer.open({
             type: 2,
             title: '',
-            content: 'channel/edit/' + id,
-            area: ["800px", "330px"]
+            content: 'content/edit/' + id,
+            area: ["1000px", "630px"]
         });
     });
     $('.addChild').click(function () {
@@ -167,8 +175,8 @@ Purchase: http://wrapbootstrap.com
         layer.open({
             type: 2,
             title: '',
-            content: 'channel/check/' + id,
-            area: ["800px", "330px"]
+            content: 'content/check/' + id,
+            area: ["1000px", "630px"]
         });
     });
 </script>

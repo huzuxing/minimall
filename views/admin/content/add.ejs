@@ -9,7 +9,7 @@ Purchase: http://wrapbootstrap.com
 <!-- Head -->
 <head>
     <meta charset="utf-8"/>
-    <title>后台管理系统-栏目编辑</title>
+    <title>后台管理系统-内容管理</title>
     <% include ../common/style.ejs %>
     <link href="/stylesheets/bootstrap-select.min.css" rel="stylesheet"/>
     <!--Skin Script: Place this script in head to load scripts for skins and rtl support-->
@@ -87,30 +87,71 @@ Purchase: http://wrapbootstrap.com
                 <div class="col-lg-12 col-sm-12 col-xs-12">
                     <div class="widget">
                         <div class="widget-header bordered-bottom bordered-palegreen">
-                            <span class="widget-caption">编辑</span>
+                            <span class="widget-caption">新增</span>
                         </div>
                         <div class="widget-body">
                             <div>
                                 <form class="form-horizontal form-bordered" role="form" method="post"
-                                      action="/admin/channel/update" id="jvForm">
-                                    <input type="hidden" name="id" value="<%=bean ? bean.id : ''%>">
+                                      action="/admin/content" id="jvForm">
                                     <div class="form-group">
-                                        <label for="name" class="col-sm-2 control-label no-padding-right">栏目名称</label>
-                                        <div class="col-sm-6">
-                                            <input type="text" class="form-control" name="name" value="<%=bean ? bean.name : ''%>">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="channelPath" class="col-sm-2 control-label no-padding-right">栏目访问路径</label>
-                                        <div class="col-sm-6">
-                                            <input type="text" class="form-control" name="channelPath" value="<%=bean ? bean.channelPath : ''%>">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="sort" class="col-sm-2 control-label no-padding-right">排序</label>
+                                        <label for="name" class="col-sm-2 control-label no-padding-right">栏目</label>
 
                                         <div class="col-sm-6">
-                                            <input type="text" class="form-control" name="sort" value="<%=bean && bean.sort ? bean.sort : ''%>">
+                                            <select name="channelId" class="selectpicker" data-live-search="true">
+                                                <% if (channels) {
+                                                channels.forEach(function (bean) { %>
+                                                <option value="<%= bean.id %>"><%= bean.name %></option>
+                                                <% })
+                                                } %>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="title" class="col-sm-2 control-label no-padding-right">标题</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" name="title" value="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="shortTitle"
+                                               class="col-sm-2 control-label no-padding-right">简短标题</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" name="shortTitle" value="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="description"
+                                               class="col-sm-2 control-label no-padding-right">摘要</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" name="description" value="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="author"
+                                               class="col-sm-2 control-label no-padding-right">作者</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" name="author" value="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="link"
+                                               class="col-sm-2 control-label no-padding-right">外部链接</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" name="link" value="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="origin"
+                                               class="col-sm-2 control-label no-padding-right">来源</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" name="origin" value="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="content"
+                                               class="col-sm-2 control-label no-padding-right">内容</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" name="content" value="">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -139,13 +180,19 @@ Purchase: http://wrapbootstrap.com
 <script type="application/javascript" src="/javascripts/jquery-form.js"></script>
 <script type="application/javascript">
     $(function () {
+        $('.selectpicker').selectpicker({
+            'selectedText': ''
+        });
+        $(".return").click(function () {
+            location.href = "/admin/menu/manage";
+        });
         $(".save").click(function () {
             if ("" == $('input[name=name]').val() || "" == $('input[name=channelPath]').val()) {
                 layer.alert('请填写完相关数据');
                 return;
             }
             $("#jvForm").ajaxSubmit({
-                success : function (result) {
+                success: function (result) {
                     if (200 == result.code) {
                         let i = layer.alert("操作成功!", function () {
                             window.parent.reloadContent();

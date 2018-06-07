@@ -16,6 +16,127 @@ module.exports = orm.accountdb.define('cyc_content', {
             this.setDataValue('id', val);
         }
     },
+    title: {
+        field: 'title',
+        type: orm.Sequelize.STRING,
+        allowNull: false,
+        get: function () {
+            return this.getDataValue('title');
+        },
+        set: function (val) {
+            this.setDataValue('title', val);
+        }
+    },
+    shortTitle: {
+        field: 'short_title',
+        type: orm.Sequelize.STRING,
+        allowNull: true,
+        get: function () {
+            return this.getDataValue('shortTitle');
+        },
+        set: function (val) {
+            this.setDataValue('shortTitle', val);
+        }
+    },
+    author: {
+        field: 'author',
+        type: orm.Sequelize.STRING,
+        allowNull: false,
+        get: function () {
+            return this.getDataValue('author');
+        },
+        set: function (val) {
+            this.setDataValue('author', val);
+        }
+    },
+    origin: {
+        field: 'origin',
+        type: orm.Sequelize.STRING,
+        allowNull: true,
+        get: function () {
+            return this.getDataValue('origin');
+        },
+        set: function (val) {
+            this.setDataValue('origin', val);
+        }
+    },
+    originUrl: {
+        field: 'origin_url',
+        type: orm.Sequelize.STRING,
+        allowNull: true,
+        get: function () {
+            return this.getDataValue('originUrl');
+        },
+        set: function (val) {
+            this.setDataValue('originUrl', val);
+        }
+    },
+    description: {
+        field: 'description',
+        type: orm.Sequelize.STRING,
+        allowNull: true,
+        get: function () {
+            return this.getDataValue('description');
+        },
+        set: function (val) {
+            this.setDataValue('description', val);
+        }
+    },
+    publishTime: {
+        field: 'publish_time',
+        type: orm.Sequelize.DATE,
+        allowNull: true,
+        get: function () {
+            return this.getDataValue('publishTime');
+        },
+        set: function (val) {
+            this.setDataValue('publishTime', val);
+        }
+    },
+    link: {
+        field: 'link',
+        type: orm.Sequelize.STRING,
+        allowNull: true,
+        get: function () {
+            return this.getDataValue('link');
+        },
+        set: function (val) {
+            this.setDataValue('link', val);
+        }
+    },
+    isPublish: {
+        field: 'is_publish',
+        type: orm.Sequelize.INTEGER,
+        default: 0,
+        get: function () {
+            return this.getDataValue('isPublish');
+        },
+        set: function (val) {
+            this.setDataValue('isPublish', val);
+        }
+    },
+    createTime: {
+        field: 'create_time',
+        type: orm.Sequelize.DATE,
+        allowNull: false,
+        get: function () {
+            return this.getDataValue('createTime');
+        },
+        set: function (val) {
+            this.setDataValue('createTime', val);
+        }
+    },
+    updateTime: {
+        field: 'update_time',
+        type: orm.Sequelize.DATE,
+        allowNull: true,
+        get: function () {
+            return this.getDataValue('updateTime');
+        },
+        set: function (val) {
+            this.setDataValue('updateTime', val);
+        }
+    },
     channelId: {
         field: 'channel_id',
         type: orm.Sequelize.INTEGER,
@@ -25,138 +146,6 @@ module.exports = orm.accountdb.define('cyc_content', {
         },
         set: function (val) {
             this.setDataValue('channelId', val);
-        }
-    },
-    typeId: {
-        field: 'type_id',
-        type: orm.Sequelize.STRING,
-        allowNull: false,
-        get: function () {
-            return this.getDataValue('typeId');
-        },
-        set: function (val) {
-            this.setDataValue('typeId', val);
-        }
-    },
-    userId: {
-        field: 'user_id',
-        type: orm.Sequelize.INTEGER,
-        allowNull: false,
-        get: function () {
-            return this.getDataValue('userId');
-        },
-        set: function (val) {
-            this.setDataValue('userId', val);
-        }
-    },
-    sortDate: {
-        field: 'sort_date',
-        type: orm.Sequelize.DATE,
-        allowNull: true,
-        get: function () {
-            return this.getDataValue('sortDate');
-        },
-        set: function (val) {
-            this.setDataValue('sortDate', val);
-        }
-    },
-    topLevel: {
-        field: 'top_level',
-        type: orm.Sequelize.INTEGER,
-        allowNull: true,
-        get: function () {
-            return this.getDataValue('topLevel');
-        },
-        set: function (val) {
-            this.setDataValue('topLevel', val);
-        }
-    },
-    isRecommend: {
-        field: 'is_recommend',
-        type: orm.Sequelize.INTEGER,
-        allowNull: true,
-        get: function () {
-            return this.getDataValue('isRecommend');
-        },
-        set: function (val) {
-            this.setDataValue('isRecommend', val);
-        }
-    },
-    status: {
-        field: 'status',
-        type: orm.Sequelize.INTEGER,
-        allowNull: true,
-        get: function () {
-            return this.getDataValue('status');
-        },
-        set: function (val) {
-            this.setDataValue('status', val);
-        }
-    },
-    viewsDay: {
-        field: 'views_day',
-        type: orm.Sequelize.INTEGER,
-        allowNull: true,
-        get: function () {
-            return this.getDataValue('viewsDay');
-        },
-        set: function (val) {
-            this.setDataValue('viewsDay', val);
-        }
-    },
-    commentsDay: {
-        field: 'comments_day',
-        type: orm.Sequelize.INTEGER,
-        allowNull: true,
-        get: function () {
-            return this.getDataValue('commentsDay');
-        },
-        set: function (val) {
-            this.setDataValue('commentsDay', val);
-        }
-    },
-    downloadsDay: {
-        field: 'downloads_day',
-        type: orm.Sequelize.INTEGER,
-        allowNull: true,
-        get: function () {
-            return this.getDataValue('downloadsDay');
-        },
-        set: function (val) {
-            this.setDataValue('downloadsDay', val);
-        }
-    },
-    udsDay: {
-        field: 'ups_day',
-        type: orm.Sequelize.INTEGER,
-        allowNull: true,
-        get: function () {
-            return this.getDataValue('udsDay');
-        },
-        set: function (val) {
-            this.setDataValue('udsDay', val);
-        }
-    },
-    score: {
-        field: 'score',
-        type: orm.Sequelize.INTEGER,
-        allowNull: true,
-        get: function () {
-            return this.getDataValue('score');
-        },
-        set: function (val) {
-            this.setDataValue('score', val);
-        }
-    },
-    recommendLevel: {
-        field: 'recommend_level',
-        type: orm.Sequelize.INTEGER,
-        allowNull: true,
-        get: function () {
-            return this.getDataValue('recommendLevel');
-        },
-        set: function (val) {
-            this.setDataValue('recommendLevel', val);
         }
     }
 }, {

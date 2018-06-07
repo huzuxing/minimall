@@ -39,9 +39,6 @@ module.exports = class BaseService {
                     $and: [
                         {
                             id: id
-                        },
-                        {
-                            allowDelete: 0//允许删除
                         }
                     ]
                 }

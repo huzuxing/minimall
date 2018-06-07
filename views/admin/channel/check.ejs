@@ -9,7 +9,7 @@ Purchase: http://wrapbootstrap.com
 <!-- Head -->
 <head>
     <meta charset="utf-8"/>
-    <title>后台管理系统-工器具管理</title>
+    <title>后台管理系统-栏目查看</title>
     <% include ../common/style.ejs %>
     <link href="/stylesheets/bootstrap-select.min.css" rel="stylesheet"/>
     <!--Skin Script: Place this script in head to load scripts for skins and rtl support-->
@@ -87,82 +87,37 @@ Purchase: http://wrapbootstrap.com
                 <div class="col-lg-12 col-sm-12 col-xs-12">
                     <div class="widget">
                         <div class="widget-header bordered-bottom bordered-palegreen">
-                            <span class="widget-caption">详情</span>
+                            <span class="widget-caption">编辑</span>
                         </div>
                         <div class="widget-body">
                             <div>
                                 <form class="form-horizontal form-bordered" role="form" method="post"
-                                      action="" id="jvForm">
+                                      action="/admin/channel/update" id="jvForm">
+                                    <input type="hidden" name="id" value="<%=bean ? bean.id : ''%>">
                                     <div class="form-group">
-                                        <label for="name" class="col-sm-2 control-label no-padding-right">父级菜单</label>
-                                        <div class="col-sm-4">
-                                            <input type="text" class="form-control" readonly
-                                                   value="<%=bean && '' != bean.parentName ? bean.parentName : '顶级菜单'%>">
-                                        </div>
-                                        <label for="name" class="col-sm-2 control-label no-padding-right">创建者</label>
-                                        <div class="col-sm-4">
-                                            <input type="text" class="form-control" readonly
-                                                   value="<%=bean ? bean.createUserName : ''%>">
+                                        <label for="name" class="col-sm-2 control-label no-padding-right">栏目名称</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" name="zhName" value="<%=bean ? bean.name : ''%>" readonly="true">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="name" class="col-sm-2 control-label no-padding-right">中文名</label>
-
-                                        <div class="col-sm-4">
-                                            <input type="text" class="form-control" readonly value="<%=bean ? bean.zhName : ''%>">
-                                        </div>
-
-                                        <label for="name" class="col-sm-2 control-label no-padding-right">创建时间</label>
-                                        <div class="col-sm-4">
-                                            <input type="text" class="form-control" readonly
-                                                   value="<%=bean ? bean.createTime : ''%>">
+                                        <label for="channelPath" class="col-sm-2 control-label no-padding-right">栏目访问路径</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" name="channelPath" value="<%=bean ? bean.channelPath : ''%>" readonly="true">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="name" class="col-sm-2 control-label no-padding-right">英文名</label>
+                                        <label for="sort" class="col-sm-2 control-label no-padding-right">排序</label>
 
-                                        <div class="col-sm-4">
-                                            <input type="text" class="form-control" readonly value="<%=bean ? bean.enName : ''%>">
-                                        </div>
-                                        <label for="name" class="col-sm-2 control-label no-padding-right">更新者</label>
-                                        <div class="col-sm-4">
-                                            <input type="text" class="form-control" readonly
-                                                   value="<%=bean ? bean.updateUserName : ''%>">
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" name="sort" value="<%=bean && bean.sort ? bean.sort : ''%>" readonly="true">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="name" class="col-sm-2 control-label no-padding-right">icon</label>
+                                        <label for="sort" class="col-sm-2 control-label no-padding-right">创建时间</label>
 
-                                        <div class="col-sm-4">
-                                            <input type="text" class="form-control" readonly value="<%=bean ? bean.icon : ''%>">
-                                        </div>
-                                        <label for="name" class="col-sm-2 control-label no-padding-right">排序</label>
-                                        <div class="col-sm-4">
-                                            <input type="text" class="form-control" readonly
-                                                   value="<%=bean ? bean.sort : ''%>">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="name" class="col-sm-2 control-label no-padding-right">url</label>
-
-                                        <div class="col-sm-4">
-                                            <input type="text" class="form-control" readonly value="<%=bean ? bean.url : ''%>">
-                                        </div>
-                                        <label for="name" class="col-sm-2 control-label no-padding-right">更新时间</label>
-                                        <div class="col-sm-4">
-                                            <input type="text" class="form-control" readonly
-                                                   value="<%=bean ? bean.updateTime : ''%>">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="name" class="col-sm-2 control-label no-padding-right">target</label>
-                                        <div class="col-sm-4">
-                                            <input type="text" class="form-control" readonly value="<%=bean ? bean.target : ''%>">
-                                        </div>
-                                        <label for="name" class="col-sm-2 control-label no-padding-right">是否显示</label>
-                                        <div class="col-sm-4">
-                                            <input type="text" class="form-control"
-                                                   readonly value="<%=bean && bean.isDisplay == 0 ? '是' : '否'%>">
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" name="sort" value="<%=bean && bean.createTime ? bean.createTime : ''%>" readonly="true">
                                         </div>
                                     </div>
                                 </form>
@@ -181,4 +136,30 @@ Purchase: http://wrapbootstrap.com
 </div>
 </body>
 <!--  /Body -->
+<% include ../common/scripts.ejs %>
+<script type="application/javascript" src="/javascripts/bootstrap-select.min.js"></script>
+<script type="application/javascript" src="/javascripts/jquery-form.js"></script>
+<script type="application/javascript">
+    $(function () {
+        $(".save").click(function () {
+            if ("" == $('input[name=name]').val() || "" == $('input[name=channelPath]').val()) {
+                layer.alert('请填写完相关数据');
+                return;
+            }
+            $("#jvForm").ajaxSubmit({
+                success : function (result) {
+                    if (200 == result.code) {
+                        let i = layer.alert("操作成功!", function () {
+                            window.parent.reloadContent();
+                            layer.closeAll();
+                        });
+                    }
+                    else {
+                        layer.alert(result.msg);
+                    }
+                }
+            });
+        });
+    });
+</script>
 </html>

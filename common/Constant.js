@@ -11,5 +11,6 @@ module.exports = {
     USER_FAIL_MSG : '用户名或者密码错误!',
     USER_DISABLED_CODE:4002,
     USER_DISABLED_MSG : '该用户已被禁用!',
-    COMMON_MSG : 'operation failed!'
+    COMMON_MSG : 'operation failed!',
+    ARGS_ERROR : "参数错误"
 }
