@@ -150,8 +150,9 @@ Purchase: http://wrapbootstrap.com
                                     <div class="form-group">
                                         <label for="content"
                                                class="col-sm-2 control-label no-padding-right">内容</label>
-                                        <div class="col-sm-6">
-                                            <input type="text" class="form-control" name="content" value="">
+                                        <div class="col-sm-10">
+                                            <input type="hidden" class="form-control" name="txt" value="">
+                                            <script id="editor" type="text/plain" style="width:100%;height:500px;"></script>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -180,12 +181,19 @@ Purchase: http://wrapbootstrap.com
 <!-- /Page Container -->
 <!-- Main Container -->
 </div>
+
 </body>
+
 <!--  /Body -->
 <% include ../common/scripts.ejs %>
 <script type="application/javascript" src="/javascripts/bootstrap-select.min.js"></script>
 <script type="application/javascript" src="/javascripts/jquery-form.js"></script>
+<script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.all.min.js"> </script>
+<script type="text/javascript" charset="utf-8" src="/ueditor/lang/zh-cn/zh-cn.js"></script>
+<script type="application/javascript" src="/javascripts/jquery.base64.js"></script>
 <script type="application/javascript">
+    var ue = UE.getEditor('editor');
     $(function () {
         $('.selectpicker').selectpicker({
             'selectedText': ''
@@ -198,6 +206,7 @@ Purchase: http://wrapbootstrap.com
                 layer.alert('请填写完相关数据');
                 return;
             }
+            $("input[name=txt]").val($.base64.encode(ue.getContent()));
             $("#jvForm").ajaxSubmit({
                 success: function (result) {
                     if (200 == result.code) {

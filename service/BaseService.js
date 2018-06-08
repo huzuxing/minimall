@@ -15,6 +15,11 @@ module.exports = class BaseService {
                     id : id
                 }
             }).then(function (result) {
+                if (null != result) {
+                    result = result.get({
+                        plain : true
+                    });
+                }
                 resolve(result);
             }).catch(function (ex) {
                 console.error(ex);

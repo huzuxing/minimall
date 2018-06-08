@@ -17,6 +17,7 @@
     "request": "^2.79.0",
     "sequelize": "^3.30.2",
     "serve-favicon": "~2.3.2",
+    "ueditor": "^1.2.3",
     "xml2js": "^0.4.17"
   }
 }

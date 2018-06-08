@@ -2,21 +2,21 @@
 Navicat MySQL Data Transfer
 
 Source Server         : localhost
-Source Server Version : 50631
+Source Server Version : 50717
 Source Host           : localhost:3306
 Source Database       : common
 
 Target Server Type    : MYSQL
-Target Server Version : 50631
+Target Server Version : 50717
 File Encoding         : 65001
 
-Date: 2018-06-07 22:35:04
+Date: 2018-06-08 18:44:18
 */
 
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
--- Table structure for `admin_user`
+-- Table structure for admin_user
 -- ----------------------------
 DROP TABLE IF EXISTS `admin_user`;
 CREATE TABLE `admin_user` (
@@ -38,7 +38,7 @@ CREATE TABLE `admin_user` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `cyc_admin_user`
+-- Table structure for cyc_admin_user
 -- ----------------------------
 DROP TABLE IF EXISTS `cyc_admin_user`;
 CREATE TABLE `cyc_admin_user` (
@@ -63,7 +63,7 @@ CREATE TABLE `cyc_admin_user` (
 INSERT INTO `cyc_admin_user` VALUES ('1', 'admin', 'admin', '21232f297a57a5a743894a0e4a801fc3', '13808221061', '2017-03-21 10:12:14', '2017-03-21 10:12:33', '0', '0', '1', '', '0');
 
 -- ----------------------------
--- Table structure for `cyc_channel`
+-- Table structure for cyc_channel
 -- ----------------------------
 DROP TABLE IF EXISTS `cyc_channel`;
 CREATE TABLE `cyc_channel` (
@@ -96,7 +96,7 @@ INSERT INTO `cyc_channel` VALUES ('14', '联系我们', '0', '/contact', '8', '2
 INSERT INTO `cyc_channel` VALUES ('15', '首页', '0', '/index', '1', '2018-06-07 18:23:11');
 
 -- ----------------------------
--- Table structure for `cyc_content`
+-- Table structure for cyc_content
 -- ----------------------------
 DROP TABLE IF EXISTS `cyc_content`;
 CREATE TABLE `cyc_content` (
@@ -115,18 +115,16 @@ CREATE TABLE `cyc_content` (
   `channel_id` int(11) NOT NULL COMMENT '栏目ID',
   `img` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `content_id` (`id`),
-  KEY `content_id_2` (`id`),
   KEY `title` (`title`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of cyc_content
 -- ----------------------------
-INSERT INTO `cyc_content` VALUES ('2', 'fddd', 'gg', 'gg', 'gg', null, 'gg', null, 'gg', '0', '2018-06-07 17:40:01', '2018-06-07 18:40:12', '3', null);
+INSERT INTO `cyc_content` VALUES ('24', 'afefffffffffff', 'feaf', 'adf', 'afe', null, 'adff', null, 'fe', '0', '2018-06-08 18:09:26', '2018-06-08 18:21:40', '11', null);
 
 -- ----------------------------
--- Table structure for `cyc_contenttag`
+-- Table structure for cyc_contenttag
 -- ----------------------------
 DROP TABLE IF EXISTS `cyc_contenttag`;
 CREATE TABLE `cyc_contenttag` (
@@ -140,7 +138,7 @@ CREATE TABLE `cyc_contenttag` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `cyc_content_ext`
+-- Table structure for cyc_content_ext
 -- ----------------------------
 DROP TABLE IF EXISTS `cyc_content_ext`;
 CREATE TABLE `cyc_content_ext` (
@@ -166,7 +164,7 @@ CREATE TABLE `cyc_content_ext` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `cyc_content_tag`
+-- Table structure for cyc_content_tag
 -- ----------------------------
 DROP TABLE IF EXISTS `cyc_content_tag`;
 CREATE TABLE `cyc_content_tag` (
@@ -181,7 +179,7 @@ CREATE TABLE `cyc_content_tag` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `cyc_content_txt`
+-- Table structure for cyc_content_txt
 -- ----------------------------
 DROP TABLE IF EXISTS `cyc_content_txt`;
 CREATE TABLE `cyc_content_txt` (
@@ -194,9 +192,17 @@ CREATE TABLE `cyc_content_txt` (
 -- ----------------------------
 -- Records of cyc_content_txt
 -- ----------------------------
+INSERT INTO `cyc_content_txt` VALUES ('13', '<p>sss</p>');
+INSERT INTO `cyc_content_txt` VALUES ('17', '<p>asdfefe</p>');
+INSERT INTO `cyc_content_txt` VALUES ('18', '<p>adfefs</p>');
+INSERT INTO `cyc_content_txt` VALUES ('19', '<p>fef</p>');
+INSERT INTO `cyc_content_txt` VALUES ('20', '<p>afefef</p>');
+INSERT INTO `cyc_content_txt` VALUES ('21', '<p><span style=\"color: rgb(255, 0, 0);\">afefe2018-06-08</span></p>');
+INSERT INTO `cyc_content_txt` VALUES ('22', '<p>vdvd</p>');
+INSERT INTO `cyc_content_txt` VALUES ('24', '<p>fefefe</p><p><span style=\"color: rgb(255, 0, 0);\">&nbsp;&nbsp;&nbsp;&nbsp;<strong>afefe</strong></span><br/></p><p><br/></p>');
 
 -- ----------------------------
--- Table structure for `cyc_content_type`
+-- Table structure for cyc_content_type
 -- ----------------------------
 DROP TABLE IF EXISTS `cyc_content_type`;
 CREATE TABLE `cyc_content_type` (
@@ -217,7 +223,7 @@ CREATE TABLE `cyc_content_type` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `cyc_group`
+-- Table structure for cyc_group
 -- ----------------------------
 DROP TABLE IF EXISTS `cyc_group`;
 CREATE TABLE `cyc_group` (
@@ -234,7 +240,7 @@ CREATE TABLE `cyc_group` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `cyc_group_permission`
+-- Table structure for cyc_group_permission
 -- ----------------------------
 DROP TABLE IF EXISTS `cyc_group_permission`;
 CREATE TABLE `cyc_group_permission` (
@@ -250,7 +256,7 @@ CREATE TABLE `cyc_group_permission` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `cyc_group_role`
+-- Table structure for cyc_group_role
 -- ----------------------------
 DROP TABLE IF EXISTS `cyc_group_role`;
 CREATE TABLE `cyc_group_role` (
@@ -265,7 +271,7 @@ CREATE TABLE `cyc_group_role` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `cyc_module`
+-- Table structure for cyc_module
 -- ----------------------------
 DROP TABLE IF EXISTS `cyc_module`;
 CREATE TABLE `cyc_module` (
@@ -308,7 +314,7 @@ INSERT INTO `cyc_module` VALUES ('28', '0', 'data', '数据', 'fa fa-folder', 'j
 INSERT INTO `cyc_module` VALUES ('29', '0', 'content_type', '内容类型', 'fa fa-folder', 'javascript:;', 'main', '0', '1', '0', '0', '0', '0', '0', '1', '', '2017-03-24 16:22:38', '1', 'admin', '2017-03-24 17:00:09', '1', 'admin', '0');
 
 -- ----------------------------
--- Table structure for `cyc_permission`
+-- Table structure for cyc_permission
 -- ----------------------------
 DROP TABLE IF EXISTS `cyc_permission`;
 CREATE TABLE `cyc_permission` (
@@ -324,7 +330,7 @@ CREATE TABLE `cyc_permission` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `cyc_role`
+-- Table structure for cyc_role
 -- ----------------------------
 DROP TABLE IF EXISTS `cyc_role`;
 CREATE TABLE `cyc_role` (
@@ -341,7 +347,7 @@ CREATE TABLE `cyc_role` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `cyc_role_permission`
+-- Table structure for cyc_role_permission
 -- ----------------------------
 DROP TABLE IF EXISTS `cyc_role_permission`;
 CREATE TABLE `cyc_role_permission` (
@@ -357,7 +363,7 @@ CREATE TABLE `cyc_role_permission` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `cyc_user_group`
+-- Table structure for cyc_user_group
 -- ----------------------------
 DROP TABLE IF EXISTS `cyc_user_group`;
 CREATE TABLE `cyc_user_group` (
@@ -372,7 +378,7 @@ CREATE TABLE `cyc_user_group` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `cyc_user_permission`
+-- Table structure for cyc_user_permission
 -- ----------------------------
 DROP TABLE IF EXISTS `cyc_user_permission`;
 CREATE TABLE `cyc_user_permission` (
@@ -388,7 +394,7 @@ CREATE TABLE `cyc_user_permission` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `group`
+-- Table structure for group
 -- ----------------------------
 DROP TABLE IF EXISTS `group`;
 CREATE TABLE `group` (
@@ -405,7 +411,7 @@ CREATE TABLE `group` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `group_permission`
+-- Table structure for group_permission
 -- ----------------------------
 DROP TABLE IF EXISTS `group_permission`;
 CREATE TABLE `group_permission` (
@@ -421,7 +427,7 @@ CREATE TABLE `group_permission` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `group_role`
+-- Table structure for group_role
 -- ----------------------------
 DROP TABLE IF EXISTS `group_role`;
 CREATE TABLE `group_role` (
@@ -436,7 +442,7 @@ CREATE TABLE `group_role` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `module`
+-- Table structure for module
 -- ----------------------------
 DROP TABLE IF EXISTS `module`;
 CREATE TABLE `module` (
@@ -471,7 +477,7 @@ CREATE TABLE `module` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `permission`
+-- Table structure for permission
 -- ----------------------------
 DROP TABLE IF EXISTS `permission`;
 CREATE TABLE `permission` (
@@ -487,7 +493,7 @@ CREATE TABLE `permission` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `role`
+-- Table structure for role
 -- ----------------------------
 DROP TABLE IF EXISTS `role`;
 CREATE TABLE `role` (
@@ -504,7 +510,7 @@ CREATE TABLE `role` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `role_permission`
+-- Table structure for role_permission
 -- ----------------------------
 DROP TABLE IF EXISTS `role_permission`;
 CREATE TABLE `role_permission` (
@@ -520,7 +526,7 @@ CREATE TABLE `role_permission` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `user_group`
+-- Table structure for user_group
 -- ----------------------------
 DROP TABLE IF EXISTS `user_group`;
 CREATE TABLE `user_group` (
@@ -535,7 +541,7 @@ CREATE TABLE `user_group` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `user_permission`
+-- Table structure for user_permission
 -- ----------------------------
 DROP TABLE IF EXISTS `user_permission`;
 CREATE TABLE `user_permission` (

@@ -6,6 +6,7 @@ const CONSTANT = require('../../common/Constant');
 const request = require('request');
 const contentService = require('../../service/ContentService');
 const channelService = require('../../service/ChannelService');
+const contentTxtService = require('../../service/ContentTxtService');
 
 /**
  * 获取list
@@ -45,7 +46,10 @@ router.get('/edit/:id', function (req, res) {
     let id = req.params.id;
     let bean;
     contentService.getById(id).then(result => {
-        bean = result.get({plain:true});
+        bean = result;
+        return contentTxtService.getById(bean.id);
+    }).then(result => {
+        bean.txt = new Buffer(result.txt).toString('base64');
         return channelService.list();
     }).then(result => {
         bean.createTime = new Date(bean.createTime).format('yyyy-MM-dd hh:mm:ss');
@@ -126,6 +130,7 @@ function save(req, res) {
         bean[i] = req.body[i];
     }
     bean.createTime = new Date();
+    bean.txt = new Buffer(bean.txt, 'base64').toString();
     contentService.save(bean).then(result => {
         if (result)
             res.jsonp({code: CONSTANT.SUCCESS_CODE});
@@ -145,11 +150,9 @@ function update(req, res) {
     if (!bean.id) {
         return res.jsonp({code: CONSTANT.FAIL_CODE, msg: CONSTANT.ARGS_ERROR});
     }
+    bean.txt = new Buffer(bean.txt, 'base64').toString();
     contentService.getById(bean.id).then(result => {
         if (result && result.id > 0) {
-            result = result.get({
-                plain: true
-            });
             for (let key in bean) {
                 result[key] = bean[key];
             }
@@ -191,17 +194,19 @@ function remove(req, res) {
 //查看
 router.get('/check/:id', function (req, res) {
     let id = req.params.id;
-    let bean = {};
-    if (!id) {
-       return res.jsonp({code: CONSTANT.PARAM_FAIL_CODE, msg: CONSTANT.PARAM_FAIL_MSG});
-    }
+    let bean;
     contentService.getById(id).then(result => {
-        bean = result.get({plain : true});
+        bean = result;
+        return contentTxtService.getById(id);
+    }).then(result => {
+        bean.txt = new Buffer(result.txt).toString('base64');
         return channelService.list();
     }).then(result => {
         bean.createTime = new Date(bean.createTime).format('yyyy-MM-dd hh:mm:ss');
         bean.updateTime = new Date(bean.updateTime).format('yyyy-MM-dd hh:mm:ss');
-        res.render('admin/content/check', {bean: bean, channels : result});
+        res.locals.bean = bean;
+        res.locals.channels = result;
+        res.render('admin/content/check');
     }).catch(ex => {
         console.error(ex);
         res.jsonp({code: CONSTANT.FAIL_CODE, msg: ex.message});

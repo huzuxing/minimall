@@ -5,7 +5,7 @@
 let orm = require('../model/orm');
 let BaseService = require('./BaseService');
 let Content = require('../model/Content');
-
+let ContentTxt = require('../model/ContentTxt');
 class ContentExtService extends BaseService {
 
     constructor() {
@@ -14,17 +14,60 @@ class ContentExtService extends BaseService {
 
     //持久化资源module
     save(bean) {
-        return super.save(Content, bean);
+        return new Promise(function (resolve, reject) {
+            orm.accountdb.transaction(function (tr) {
+                return Content.create(bean, {transaction : tr}).then(result => {
+                    let contentTxt = {};
+                    contentTxt.id = result.null;
+                    contentTxt.txt = bean.txt;
+                    return ContentTxt.create(contentTxt, {transaction : tr});
+                });
+            }).then(result => {
+                resolve(result);
+            }).catch(error => {
+                console.error(error)
+            });
+        });
     }
 
     //更新资源module
     update(bean) {
-        return super.update(Content, bean);
+        return new Promise(function (resolve, reject) {
+            orm.accountdb.transaction(function (tr) {
+                return Content.update(bean,{
+                    where : { id : bean.id}
+                }, {transaction : tr}).then(result => {
+                    let contentTxt = {};
+                    contentTxt.txt = bean.txt;
+                    return ContentTxt.update(contentTxt, {
+                        where : { id : bean.id}
+                    }, {transaction : tr});
+                });
+            }).then(result => {
+                resolve(result);
+            }).catch(error => {
+                console.error(error)
+            });
+        });
     }
 
     //删除资源module
     delete(id) {
-        return super.destroy(Content, id);
+        return new Promise(function (resolve, reject) {
+            orm.accountdb.transaction(function (tr) {
+                return Content.destroy({
+                    where : { id : id}
+                }, {transaction : tr}).then(result => {
+                    return ContentTxt.destroy({
+                        where : { id : id}
+                    }, {transaction : tr});
+                });
+            }).then(result => {
+                resolve(result);
+            }).catch(error => {
+                console.error(error)
+            });
+        });
     }
     
     //获取菜单列表

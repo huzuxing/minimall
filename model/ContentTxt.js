@@ -7,6 +7,7 @@ module.exports = orm.accountdb.define('cyc_content_txt', {
         field: 'content_id',
         type: orm.Sequelize.INTEGER,
         allowNull: false,
+        primaryKey:true,
         get: function () {
             return this.getDataValue('id');
         },
