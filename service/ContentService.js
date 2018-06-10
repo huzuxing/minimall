@@ -143,5 +143,24 @@ class ContentExtService extends BaseService {
             });
         });
     }
+    contact(channelPath) {
+        return new Promise(function (resovle, reject) {
+            let sql = 'select m.* from cyc_content m left join cyc_channel cc on m.channel_id=cc.id where 1=1';
+            if (channelPath && "" != channelPath) {
+                sql += ' and cc.channel_path=\'' + channelPath + '\'';
+            }
+            sql += ' order by m.create_time desc';
+            sql += ' limit 0,1';
+            orm.accountdb.query(sql, {type: orm.Sequelize.QueryTypes.SELECT}).then(result => {
+                if (result) {
+                    result = result[0];
+                }
+                resovle(result);
+            }).catch(ex => {
+                console.error(ex);
+                reject(ex);
+            });
+        });
+    }
 }
 module.exports = new ContentExtService();
