@@ -124,7 +124,9 @@ Purchase: http://wrapbootstrap.com
                                         <label for="description"
                                                class="col-sm-2 control-label no-padding-right">摘要</label>
                                         <div class="col-sm-6">
-                                            <input type="text" class="form-control" name="description" value="<%=bean ? bean.description : ''%>">
+                                            <textarea name="description" cols="70" rows="8" style="text-align: left; overflow: hidden">
+                                                <%=bean ? bean.description : ''%>
+                                            </textarea>
                                         </div>
                                     </div>
                                     <div class="form-group">

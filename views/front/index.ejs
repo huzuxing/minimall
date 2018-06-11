@@ -1,291 +1,240 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Home</title>
-<!-- for-mobile-apps -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
-		function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!-- //for-mobile-apps -->
-<link href="/front/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-<link href="/front/css/style.css" rel="stylesheet" type="text/css" media="all" />
-<link rel="stylesheet" href="/front/css/flexslider.css" type="text/css" media="screen" property="" />
-<!-- js -->
-<script type="text/javascript" src="/front/js/jquery-2.1.4.min.js"></script>
-<!-- //js -->
-<!-- start-smoth-scrolling -->
-<script type="text/javascript" src="/front/js/move-top.js"></script>
-<script type="text/javascript" src="/front/js/easing.js"></script>
-	<script type="text/javascript" src="/front/js/wySilder.min.js"></script>
+    <title>泸州绿荫环保科技有限公司</title>
+    <!-- for-mobile-apps -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="keywords" content=""/>
+    <script type="application/x-javascript"> addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        } </script>
+    <!-- //for-mobile-apps -->
+    <link href="/front/css/bootstrap.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="/front/css/style.css" rel="stylesheet" type="text/css" media="all"/>
+    <link rel="stylesheet" href="/front/css/flexslider.css" type="text/css" media="screen" property=""/>
+    <!-- js -->
+    <script type="text/javascript" src="/front/js/jquery-2.1.4.min.js"></script>
+    <!-- //js -->
+    <!-- start-smoth-scrolling -->
+    <script type="text/javascript" src="/front/js/move-top.js"></script>
+    <script type="text/javascript" src="/front/js/easing.js"></script>
+    <script type="text/javascript" src="/front/js/wySilder.min.js"></script>
 
 
-	<style type="text/css">
-		.case {
-			width: 100%;
-			height:auto;
-			overflow: hidden;
-		}
-		.case li {
-			list-style: none;
-			float: left;
-			padding: 5px;
-			height:auto;
-		}
-		.case h4{
-			text-align: center;
-		}
-	</style>
-<script type="text/javascript">
-	jQuery(document).ready(function($) {
-		$(".scroll").click(function(event){		
-			event.preventDefault();
-			$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
-		});
+    <style type="text/css">
+        .case {
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+        }
 
-		$(".js-silder").silder({
-			auto: true,//自动播放，传入任何可以转化为true的值都会自动轮播
-			speed: 20,//轮播图运动速度
-			sideCtrl: true,//是否需要侧边控制按钮
-			bottomCtrl: true,//是否需要底部控制按钮
-			defaultView: 0,//默认显示的索引
-			interval: 2000,//自动轮播的时间，以毫秒为单位，默认3000毫秒
-			activeClass: "active",//小的控制按钮激活的样式，不包括作用两边，默认active
-		});
-	});
-</script>
-<!-- start-smoth-scrolling -->
+        .case li {
+            list-style: none;
+            float: left;
+            padding: 5px;
+            height: auto;
+        }
+
+        .case h4 {
+            text-align: center;
+        }
+    </style>
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({scrollTop: $(this.hash).offset().top}, 1000);
+            });
+
+            $(".js-silder").silder({
+                auto: true,//自动播放，传入任何可以转化为true的值都会自动轮播
+                speed: 20,//轮播图运动速度
+                sideCtrl: true,//是否需要侧边控制按钮
+                bottomCtrl: true,//是否需要底部控制按钮
+                defaultView: 0,//默认显示的索引
+                interval: 2000,//自动轮播的时间，以毫秒为单位，默认3000毫秒
+                activeClass: "active",//小的控制按钮激活的样式，不包括作用两边，默认active
+            });
+        });
+    </script>
+    <!-- start-smoth-scrolling -->
 </head>
-	
+
 <body>
 <!-- header -->
-	<div class="top-nav">
-		<div class="container">
-			<nav class="navbar navbar-default">
-				<div class="navbar-header navbar-left">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-				</div>
-				<!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
-					<nav class="menu menu--shylock">
-						<ul class="nav navbar-nav link-effect-7" id="link-effect-7">
-							<li class="active"><a href="/" data-hover="首页">首页</a></li>
-							<li><a href="/service" data-hover="产品服务">产品服务</a></li>
-							<li><a href="/case" data-hover="客户案例">客户案例</a></li>
-							<li><a href="/knowledge" data-hover="科普知识">科普知识</a></li>
-							<li><a href="/about" data-hover="关于我们">关于我们</a></li>
-							<li><a href="contact" data-hover="联系我们">联系我们</a></li>
-						</ul>
-					</nav>
-				</div>
-			</nav>	
-		</div>	
-	</div>	
+<div class="top-nav">
+    <div class="container">
+        <nav class="navbar navbar-default">
+            <div class="navbar-header navbar-left">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+                <nav class="menu menu--shylock">
+                    <ul class="nav navbar-nav link-effect-7" id="link-effect-7">
+                        <li class="active"><a href="/" data-hover="首页">首页</a></li>
+                        <li><a href="/service" data-hover="产品服务">产品服务</a></li>
+                        <li><a href="/case" data-hover="客户案例">客户案例</a></li>
+                        <li><a href="/knowledge" data-hover="科普知识">科普知识</a></li>
+                        <li><a href="/about" data-hover="关于我们">关于我们</a></li>
+                        <li><a href="contact" data-hover="联系我们">联系我们</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </nav>
+    </div>
+</div>
 <!-- //header -->
 <!-- banner -->
 <div class="js-silder">
-	<div class="silder-scroll">
-		<div class="silder-main">
-			<div class="silder-main-img">
-				<img src="/images/1.jpg" alt="">
-			</div>
-			<div class="silder-main-img">
-				<img src="/images/2.jpg" alt="">
-			</div>
-			<div class="silder-main-img">
-				<img src="/images/3.jpg" alt="">
-			</div>
-		</div>
-	</div>
+    <div class="silder-scroll">
+        <div class="silder-main">
+            <% if(data && data.banner) {
+            data.banner.forEach(function (banner) { %>
+            <div class="silder-main-img">
+                <img src="<%= banner.img%>" alt="<%= banner.title%>">
+            </div>
+            <% })
+            } %>
+        </div>
+    </div>
 </div>
 <!-- //banner -->
 
 <!-- gallery -->
-	<div class="gallery">
-		<h3 class="head"><span class="glyphicon" aria-hidden="true"></span>客户案列</h3>
-		<div class="w3_gallery_grids">
-					<ul class="case">
-						<li>
-							<a href="images/1.jpg">
-								<img src="images/1.jpg" alt=" "  width="320px" height="320px"/>
-							</a>
-							<div style="margin-top: 5px;">
-								<h4>滨江合成380户业主</h4>
-							</div>
-						</li>
-						<li>
-							<a href="images/1.jpg">
-								<img src="images/1.jpg" alt=" "  width="320px" height="320px"/>
-							</a>
-							<div style="margin-top: 5px;">
-								<h4>滨江合成380户业主</h4>
-							</div>
-						</li>
-						<li>
-							<a href="images/1.jpg">
-								<img src="images/1.jpg" alt=" "  width="320px" height="320px"/>
-							</a>
-							<div style="margin-top: 5px;">
-								<h4>滨江合成380户业主</h4>
-							</div>
-						</li>
-						<li>
-							<a href="images/1.jpg">
-								<img src="images/1.jpg" alt=" "  width="320px" height="320px"/>
-							</a>
-							<div style="margin-top: 5px;">
-								<h4>滨江合成380户业主</h4>
-							</div>
-						</li>
-						<li>
-							<a href="images/1.jpg">
-								<img src="images/1.jpg" alt=" "  width="320px" height="320px"/>
-							</a>
-							<div style="margin-top: 5px;">
-								<h4>滨江合成380户业主</h4>
-							</div>
-						</li>
-						<li>
-							<a href="images/1.jpg">
-								<img src="images/1.jpg" alt=" "  width="320px" height="320px"/>
-							</a>
-							<div style="margin-top: 5px;">
-								<h4>滨江合成380户业主</h4>
-							</div>
-						</li>
-					</ul>
-					<div class="clearfix"> </div>
-		</div>
-	</div>
+<div class="gallery">
+    <h3 class="head"><span class="glyphicon" aria-hidden="true"></span>客户案列</h3>
+    <div class="w3_gallery_grids">
+        <ul class="case">
+            <% if(data && data.case) {
+            data.case.forEach(function (bean) { %>
+            <li>
+                <a href="/content/detail/<%= bean.id%>">
+                    <img src="<%= bean.img%>" alt=" " width="320px" height="320px"/>
+                </a>
+                <div style="margin-top: 5px;">
+                    <h4><%= bean.title%></h4>
+                </div>
+            </li>
+            <% })
+            } %>
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+</div>
 <!-- //gallery -->
 <div class="banner-bottom" style="background: url('/front/images/index_pic2.jpg') center no-repeat">
-	<div class="container">
-		<div class="">
-			<p style="text-indent: 40px;letter-spacing: 5px;line-height: 34px;color: #f2f3f5;">
-				浙大冰虫依托于浙江大学实验室科研力量，由来自浙大环境与资源学院、医学院、公共卫生学院以及中科院、日本理化学研究院和意大利维罗纳大学的多位博士和硕士支持创办。
-				公司致力于室内空气检测、室内空气污染治理及空气净化产品的研发、生产和销售。自成立以来，冰虫已为全国4500多家企事业单位及36000多户家庭提供了室内空气检测及治理服务，其中包括杭州G20峰会、
-				“一带一路”标志性建筑-敦煌文博会馆、宁夏银川中国-阿拉伯国家博览会、乌镇世界互联网大会、世界工业设计大会等重大国家工程项目。目前，浙大冰虫在整个行业内拥…
-				<a href="" class="" data-text="">
-					<span style="color: #f2f3f5;">>>more</span>
-				</a>
-			</p>
-		</div>
-		<div class="clearfix"> </div>
-	</div>
+    <div class="container">
+        <div class="">
+            <p style="text-indent: 40px;letter-spacing: 5px;line-height: 34px;color: #f2f3f5;">
+                浙大冰虫依托于浙江大学实验室科研力量，由来自浙大环境与资源学院、医学院、公共卫生学院以及中科院、日本理化学研究院和意大利维罗纳大学的多位博士和硕士支持创办。
+                公司致力于室内空气检测、室内空气污染治理及空气净化产品的研发、生产和销售。自成立以来，冰虫已为全国4500多家企事业单位及36000多户家庭提供了室内空气检测及治理服务，其中包括杭州G20峰会、
+                “一带一路”标志性建筑-敦煌文博会馆、宁夏银川中国-阿拉伯国家博览会、乌镇世界互联网大会、世界工业设计大会等重大国家工程项目。目前，浙大冰虫在整个行业内拥…
+                <a href="" class="" data-text="">
+                    <span style="color: #f2f3f5;">>>more</span>
+                </a>
+            </p>
+        </div>
+        <div class="clearfix"></div>
+    </div>
 </div>
 <div class="service">
-	<h3 class="servciehead"><span aria-hidden="true"></span>产品与服务</h3>
-	<div class="w3_gallery_grids">
-		<ul class="case">
-			<li>
-				<a href="images/1.jpg">
-					<img src="images/1.jpg" alt=" "  width="320px" height="320px"/>
-				</a>
-				<div style="margin-top: 5px;">
-					<h4>滨江合成380户业主</h4>
-				</div>
-			</li>
-			<li>
-				<a href="images/1.jpg">
-					<img src="images/1.jpg" alt=" "  width="320px" height="320px"/>
-				</a>
-				<div style="margin-top: 5px;">
-					<h4>滨江合成380户业主</h4>
-				</div>
-			</li>
-			<li>
-				<a href="images/1.jpg">
-					<img src="images/1.jpg" alt=" "  width="320px" height="320px"/>
-				</a>
-				<div style="margin-top: 5px;">
-					<h4>滨江合成380户业主</h4>
-				</div>
-			</li>
-			<li>
-				<a href="images/1.jpg">
-					<img src="images/1.jpg" alt=" "  width="320px" height="320px"/>
-				</a>
-				<div style="margin-top: 5px;">
-					<h4>滨江合成380户业主</h4>
-				</div>
-			</li>
-			<li>
-				<a href="images/1.jpg">
-					<img src="images/1.jpg" alt=" "  width="320px" height="320px"/>
-				</a>
-				<div style="margin-top: 5px;">
-					<h4>滨江合成380户业主</h4>
-				</div>
-			</li>
-			<li>
-				<a href="images/1.jpg">
-					<img src="images/1.jpg" alt=" "  width="320px" height="320px"/>
-				</a>
-				<div style="margin-top: 5px;">
-					<h4>滨江合成380户业主</h4>
-				</div>
-			</li>
-		</ul>
-		<div class="clearfix"> </div>
-	</div>
+    <h3 class="servciehead"><span aria-hidden="true"></span>产品与服务</h3>
+    <div class="w3_gallery_grids">
+        <ul class="case">
+            <% if(data && data.service) {
+            data.service.forEach(function (bean) { %>
+            <li>
+                <a href="/content/detail/<%= bean.id%>">
+                    <img src="<%= bean.img%>" alt=" " width="320px" height="320px"/>
+                </a>
+                <div style="margin-top: 5px;">
+                    <h4><%= bean.title%></h4>
+                </div>
+            </li>
+            <% })
+            } %>
+        </ul>
+        <div class="clearfix"></div>
+    </div>
 </div>
 <!-- footer -->
-	<div class="footer">
-		<div class="container">
-			<div class="col-md-4 agileinfo_footer_grid">
-				<h3>关于我们</h3>
-				<p>冰虫是一种极地生物，于南北极极寒冰雪中生存，具有顽强生命力。这种顽强的生命力恰如冰虫公司的企业文化精神，自立、自强、生生不息。
-					冰虫生命力顽强，但极怕污染，一点点污染都会让其生命终结，正如人类本应生活在原生态的自然条件下，享受蓝天白云碧水青山，但现实居住环境却被污染层层包围，人类健康面临着巨大的威胁。冰虫的</p>
-			</div>
-			<div class="col-md-4 agileinfo_footer_grid">
-				<h3>科普知识</h3>
-				<ul class="w3agile_footer_grid_list">
-					<li><a href="#">史上最全除甲醛方法，您选对了吗？</a></li>
-					<li><a href="#">史上最全除甲醛方法，您选对了吗？</a> ></li>
-				</ul>
-			</div>
-			<div class="col-md-4 agileinfo_footer_grid">
-				<h3>友情链接</h3>
-				<ul class="agileinfo_social_icons">
-					<li><a href="http://www.zhedabingchong.com/" class="facebook"><span></span><i>-</i>浙大冰虫</a></li>
-					<li><a href="http://www.zhedabingchong.com/" class="facebook"><span></span><i>-</i>创一创科技</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
+<div class="footer">
+    <div class="container">
+        <div class="col-md-4 agileinfo_footer_grid">
+            <h3>关于我们</h3>
+            <p id="about">
+
+            </p>
+        </div>
+        <div class="col-md-4 agileinfo_footer_grid">
+            <h3>科普知识</h3>
+            <ul class="w3agile_footer_grid_list">
+                <li><a href="#">史上最全除甲醛方法，您选对了吗？</a></li>
+                <li><a href="#">史上最全除甲醛方法，您选对了吗？</a></li>
+            </ul>
+        </div>
+        <div class="col-md-4 agileinfo_footer_grid">
+            <h3>友情链接</h3>
+            <ul class="agileinfo_social_icons">
+                <li><a href="http://www.zhedabingchong.com/" class="facebook"><span></span><i>-</i>浙大冰虫</a></li>
+                <li><a href="http://www.zhedabingchong.com/" class="facebook"><span></span><i>-</i>创一创科技</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.ajax({
+            url : "/about",
+            type : "post",
+            data : {count : 1},
+            dataType : "JSON",
+            success : function (result) {
+                if (200 == result.code) {
+                    $("#about").text(result.data.txt);
+                }
+            }
+        });
+    });
+</script>
 <!-- //footer -->
 <!-- copy-right -->
-	<div class="w3agile_copy_right">
-		<div class="container">
-			 <p>Copyright &copy; 2018.成都创一创科技有限公司，技术支持：成都创一创科技有限公司</p>
-		</div>
-	</div>
+<div class="w3agile_copy_right">
+    <div class="container">
+        <p>Copyright &copy; 2018.泸州绿荫环保科技有限公司，技术支持：成都创一创科技有限公司</p>
+    </div>
+</div>
 <!-- //copy-right -->
 <!-- for bootstrap working -->
-	<script src="/front/js/bootstrap.js"></script>
+<script src="/front/js/bootstrap.js"></script>
 <!-- //for bootstrap working -->
 <!-- here stars scrolling icon -->
-	<script type="text/javascript">
-		$(document).ready(function() {
-			/*
-				var defaults = {
-				containerID: 'toTop', // fading element id
-				containerHoverID: 'toTopHover', // fading element hover id
-				scrollSpeed: 1200,
-				easingType: 'linear' 
-				};
-			*/
-								
-			$().UItoTop({ easingType: 'easeOutQuart' });
-								
-			});
-	</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        /*
+         var defaults = {
+         containerID: 'toTop', // fading element id
+         containerHoverID: 'toTopHover', // fading element hover id
+         scrollSpeed: 1200,
+         easingType: 'linear'
+         };
+         */
+
+        $().UItoTop({easingType: 'easeOutQuart'});
+
+    });
+</script>
 <!-- //here ends scrolling icon -->
 </body>
 </html>

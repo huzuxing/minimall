@@ -22,7 +22,6 @@
     <!-- start-smoth-scrolling -->
     <script type="text/javascript" src="/front/js/move-top.js"></script>
     <script type="text/javascript" src="/front/js/easing.js"></script>
-    <script type="text/javascript" src="/front/js/wySilder.min.js"></script>
 
 
     <style type="text/css">
@@ -45,16 +44,6 @@
                 event.preventDefault();
                 $('html,body').animate({scrollTop: $(this.hash).offset().top}, 1000);
             });
-
-            $(".js-silder").silder({
-                auto: true,//自动播放，传入任何可以转化为true的值都会自动轮播
-                speed: 20,//轮播图运动速度
-                sideCtrl: true,//是否需要侧边控制按钮
-                bottomCtrl: true,//是否需要底部控制按钮
-                defaultView: 0,//默认显示的索引
-                interval: 2000,//自动轮播的时间，以毫秒为单位，默认3000毫秒
-                activeClass: "active",//小的控制按钮激活的样式，不包括作用两边，默认active
-            });
         });
     </script>
     <!-- start-smoth-scrolling -->
@@ -72,7 +61,7 @@
                         <li><a href="/" data-hover="首页">首页</a></li>
                         <li><a href="/service" data-hover="产品服务">产品服务</a></li>
                         <li><a href="/case" data-hover="客户案例">客户案例</a></li>
-                        <li class="active"><a href="/knowledge" data-hover="科普知识">科普知识</a></li>
+                        <li><a href="/knowledge" data-hover="科普知识">科普知识</a></li>
                         <li><a href="/about" data-hover="关于我们">关于我们</a></li>
                         <li><a href="contact" data-hover="联系我们">联系我们</a></li>
                     </ul>
@@ -82,95 +71,19 @@
     </div>
 </div>
 <!-- //header -->
-<!-- banner -->
-<div class="js-silder">
-    <div class="silder-scroll">
-        <div class="silder-main">
-            <div class="silder-main-img">
-                <img src="/images/1.jpg" alt="">
-            </div>
-            <div class="silder-main-img">
-                <img src="/images/2.jpg" alt="">
-            </div>
-            <div class="silder-main-img">
-                <img src="/images/3.jpg" alt="">
-            </div>
-        </div>
-    </div>
-</div>
-<!-- //banner -->
-
 <!-- gallery -->
 <div class="gallery">
     <div class="w3_gallery_grids">
-        <ul class="case">
-            <% if (data) {
-            data.forEach(function (bean) { %>
-            <li>
-                <% if (bean.img && "" != bean.img) { %>
-                    <div style="float: left;height : auto; width : 200px;">
-                        <a href="/content/detail/<%= bean.id %>">
-                            <img src="<%= bean.img %>" alt=" " width="180px" height="180px"/>
-                        </a>
-                    </div>
-                <% } %>
-                <div style="float: left;height : auto; width : <%=bean.img ? 780 : 980%>px;margin-left: 5px">
-                    <p style="padding-bottom: 10px;">
-                        <a href="/content/detail/<%= bean.id %>">
-                            <span style="font-size: 16px;font-weight: bold"><%= bean.title %></span>
-                        </a>
-                        <span style="float: right"><%= bean.createTime %></span>
-                    </p>
-                    <span style="line-height: 28px">
-                        <%= bean.description %>
-                    </span>
-                </div>
-            </li>
-            <% })} %>
-        </ul>
+        <div style="text-align: center">
+            <span><%=data ? data.title : ""%></span>
+        </div>
+        <div id="contact">
 
-        <div class="row DTTTFooter">
-            <div class="col-sm-6">
-                <div class="dataTables_info" id="editabledatatable_info" role="alert"
-                     aria-live="polite" aria-relevant="all" style="margin-top: 30px">
-                    共<%= page ? page.totalCount : 0 %>条数据 | <%= page ? page.totalPage : 0 %> 页
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="dataTables_paginate paging_bootstrap"
-                     id="editabledatatable_paginate">
-                    <ul class="pagination">
-                        <li class="prev">
-                            <a href="/knowledge?pageNo=1&q=<%= page ? page.q : "" %>">首页</a>
-                        </li>
-                        <li class="prev">
-                            <a href="/knowledge?pageNo=<%= page ? page.prePage : 0 %>&q=<%= page ? page.q : 0 %>">上一页</a>
-                        </li>
-                        <%
-                        'use strict';
-                        if(page) {
-                        for(var i = 1;i < page.totalPage + 1;i++) { %>
-                        <li class="<%= page.pageNo == i ? 'active' : '' %>">
-                            <a href="/knowledge?pageNo=<%= i %>&q=<%= page.q %>"><%= i %></a>
-                        </li>
-                        <% }
-                        } %>
-
-                        <li class="next">
-                            <a href="/knowledge?pageNo=<%= page ? page.nextPage : 0 %>&q=<%= page ? page.q : 0 %>">下一页</a>
-                        </li>
-                        <li class="prev">
-                            <a href="/knowledge?pageNo=<%= page ? page.totalPage : 0 %>&q=<%= page ? page.q : 0 %>">尾页</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
         </div>
         <div class="clearfix"></div>
     </div>
-
 </div>
-
+<!-- //gallery -->
 <!-- footer -->
 <div class="footer">
     <div class="container">
@@ -208,20 +121,13 @@
 <!-- //for bootstrap working -->
 <!-- here stars scrolling icon -->
 <script type="text/javascript">
+    let txt = '<%= data ? data.txt : ""%>';
     $(document).ready(function () {
-        /*
-         var defaults = {
-         containerID: 'toTop', // fading element id
-         containerHoverID: 'toTopHover', // fading element hover id
-         scrollSpeed: 1200,
-         easingType: 'linear'
-         };
-         */
-
+        $("#contact").html($.base64.decode(txt));
         $().UItoTop({easingType: 'easeOutQuart'});
-
     });
 </script>
+<script type="application/javascript" src="/javascripts/jquery.base64.js"></script>
 <!-- //here ends scrolling icon -->
 </body>
 </html>

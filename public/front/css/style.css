@@ -1085,6 +1085,9 @@ li.list-group-item1 {
 .tab-content > .active {
 	display: block;
 	visibility: visible;
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
 }
 .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
 	z-index: 0;
@@ -1142,6 +1145,9 @@ section#tables  p {
 }
 .nav-tabs {
 	margin-bottom: 3em;
+    width: 1000px;
+    margin-left:auto;
+    margin-right:auto;
 }
 .alert {
 	font-size: 0.85em;

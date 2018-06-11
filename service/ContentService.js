@@ -124,6 +124,42 @@ class ContentExtService extends BaseService {
         });
     }
 
+    knowledgePage(uri, pageNo, pageSize) {
+        pageNo = pageNo < 1 ? 1 : pageNo;
+        pageSize = pageSize < 10 ? 10 : pageSize;
+        return new Promise(function (resovle, reject) {
+            let sql = 'select m.* from cyc_content m left join cyc_channel cc on m.channel_id=cc.id where 1=1';
+            if (uri && "" != uri) {
+                sql += ' and cc.channel_path=\'' + uri + '\'';
+            }
+            sql += ' order by m.create_time desc';
+            sql += ' limit ' + ((pageNo - 1) * pageSize) + ',';
+            sql += pageSize;
+            orm.accountdb.query(sql, {type: orm.Sequelize.QueryTypes.SELECT}).then(result => {
+                resovle(result);
+            }).catch(ex => {
+                console.error(ex);
+                reject(ex);
+            });
+        });
+    }
+    // 统计
+    knowledgeCount(uri) {
+        return new Promise(function (resovle, reject) {
+            let sql = 'select count(m.id) count from cyc_content m left join cyc_channel cc on m.channel_id=cc.id where 1=1';
+            if (uri && "" != uri) {
+                sql += ' and cc.channel_path=\'' + uri + '\'';
+            }
+            sql += ' order by m.create_time desc';
+            orm.accountdb.query(sql, {type: orm.Sequelize.QueryTypes.SELECT}).then(result => {
+                resovle(result[0].count);
+            }).catch(ex => {
+                console.error(ex);
+                reject(ex);
+            });
+        });
+    }
+
     //获取单个menu
     getById(id) {
         return super.getById(Content, id);
@@ -143,18 +179,33 @@ class ContentExtService extends BaseService {
             });
         });
     }
-    contact(channelPath) {
+    getContentByChannel(channelPath, pageNo, pageSize) {
         return new Promise(function (resovle, reject) {
             let sql = 'select m.* from cyc_content m left join cyc_channel cc on m.channel_id=cc.id where 1=1';
             if (channelPath && "" != channelPath) {
                 sql += ' and cc.channel_path=\'' + channelPath + '\'';
             }
             sql += ' order by m.create_time desc';
-            sql += ' limit 0,1';
+            sql += ' limit ' + ((pageNo - 1) * pageSize) + ',';
+            sql += pageSize;
             orm.accountdb.query(sql, {type: orm.Sequelize.QueryTypes.SELECT}).then(result => {
-                if (result) {
-                    result = result[0];
-                }
+                resovle(result);
+            }).catch(ex => {
+                console.error(ex);
+                reject(ex);
+            });
+        });
+    }
+    findContentByChannel(channelPath, pageNo, pageSize) {
+        return new Promise(function (resovle, reject) {
+            let sql = 'select m.* from cyc_content m left join cyc_channel cc on m.channel_id=cc.id where 1=1';
+            if (channelPath && "" != channelPath) {
+                sql += ' and cc.channel_path like \'' + channelPath + '%\'';
+            }
+            sql += ' order by m.create_time desc';
+            sql += ' limit ' + ((pageNo - 1) * pageSize) + ',';
+            sql += pageSize;
+            orm.accountdb.query(sql, {type: orm.Sequelize.QueryTypes.SELECT}).then(result => {
                 resovle(result);
             }).catch(ex => {
                 console.error(ex);

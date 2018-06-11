@@ -13,11 +13,9 @@ const front = require('./routes/front/index');
 let test = require('./test/Test');
 const interceptor = require('./common/Interceptor');
 const ueditor = require('ueditor');
-const multer = require('multer');
-const objMulter = multer({ dest : "./public/upload"});
+
 var app = express();
 
-app.use(objMulter.any());
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -36,8 +34,7 @@ app.use(session({
     resave: true,
     saveUninitialized: false
 }));
-
-app.all('*', function (req, res, next) {
+app.all('/admin/*', function (req, res, next) {
     interceptor.intercept(req, res, next);
 });
 app.use("/ueditor/ue", ueditor(path.join(__dirname, 'public'), function (req, res, next) {
@@ -65,6 +62,9 @@ app.use("/ueditor/ue", ueditor(path.join(__dirname, 'public'), function (req, re
         res.redirect('/ueditor/ueditor.config.json')
     }
 }));
+const multer = require('multer');
+const objMulter = multer({ dest : "./public/upload", preservePath : "/ueditor/ue"});
+app.use(objMulter.any());
 app.use('/fileupload', fileupload);
 app.use('/admin', admin);
 app.use('/', front);

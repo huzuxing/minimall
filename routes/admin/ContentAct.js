@@ -52,7 +52,7 @@ router.get('/edit/:id', function (req, res) {
         bean.txt = new Buffer(result.txt).toString('base64');
         return channelService.list();
     }).then(result => {
-        bean.createTime = new Date(bean.createTime).format('yyyy-MM-dd hh:mm:ss');
+        bean.createTime = new Date(bean.create_time).format('yyyy-MM-dd hh:mm:ss');
         res.locals.bean = bean;
         res.locals.channels = result;
         res.render('admin/content/edit');

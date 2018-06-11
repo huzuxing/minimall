@@ -143,9 +143,6 @@ function update(req, res) {
     if (bean.id) {
         channelService.getById(bean.id).then(result => {
             if (result && result.id > 0) {
-                result = result.get({
-                    plain: true
-                });
                 for (let key in bean) {
                     result[key] = bean[key];
                 }
