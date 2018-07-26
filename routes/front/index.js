@@ -111,7 +111,7 @@ router.post('/about', function (req, res, next) {
 
     }).then(result => {
         if (result) {
-            data.txt = result.txt;
+            data.txt = new Buffer(result.txt).toString('base64');
         }
         res.jsonp({code: CONSTANT.SUCCESS_CODE,data: data});
     }).catch(ex => {

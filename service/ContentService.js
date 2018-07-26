@@ -91,7 +91,7 @@ class ContentExtService extends BaseService {
         pageNo = pageNo < 1 ? 1 : pageNo;
         pageSize = pageSize < 10 ? 10 : pageSize;
         return new Promise(function (resovle, reject) {
-            let sql = 'select * from cyc_content m where 1=1';
+            let sql = 'select m.*,cc.name as channelName from cyc_content m left join cyc_channel cc on m.channel_id=cc.id where 1=1';
             if (bean && bean.title) {
                 sql += ' and m.title like \'%' + bean.title + '%\'';
             }
