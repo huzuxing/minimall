@@ -203,7 +203,7 @@
             dataType : "JSON",
             success : function (result) {
                 if (200 == result.code) {
-                    $("#about").text(result.data.txt);
+                    $("#about").text(result.data.description);
                 }
             }
         });

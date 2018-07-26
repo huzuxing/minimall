@@ -107,12 +107,6 @@ router.post('/about', function (req, res, next) {
             result = result[0];
         }
         data = result;
-        return contentTxtService.getById(data.id);
-
-    }).then(result => {
-        if (result) {
-            data.txt = new Buffer(result.txt).toString('base64');
-        }
         res.jsonp({code: CONSTANT.SUCCESS_CODE,data: data});
     }).catch(ex => {
         console.error(ex);
