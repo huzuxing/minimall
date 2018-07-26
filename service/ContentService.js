@@ -181,7 +181,7 @@ class ContentExtService extends BaseService {
     }
     getContentByChannel(channelPath, pageNo, pageSize) {
         return new Promise(function (resovle, reject) {
-            let sql = 'select m.* from cyc_content m left join cyc_channel cc on m.channel_id=cc.id where 1=1';
+            let sql = 'select m.*,cct.txt as txt from cyc_content m left join cyc_content_txt cct on cct.content_id=m.id left join cyc_channel cc on m.channel_id=cc.id where 1=1';
             if (channelPath && "" != channelPath) {
                 sql += ' and cc.channel_path=\'' + channelPath + '\'';
             }

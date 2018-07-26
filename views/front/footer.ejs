@@ -1,0 +1,61 @@
+<!-- footer -->
+<div class="footer">
+    <div class="container">
+        <div class="col-md-4 agileinfo_footer_grid">
+            <h3>关于我们</h3>
+            <p id="about">
+
+            </p>
+        </div>
+        <div class="col-md-4 agileinfo_footer_grid">
+            <h3>科普知识</h3>
+            <ul class="w3agile_footer_grid_list" id="knowledge">
+
+            </ul>
+        </div>
+        <div class="col-md-4 agileinfo_footer_grid">
+            <h3>友情链接</h3>
+            <ul class="agileinfo_social_icons">
+                <li><a href="http://www.zhedabingchong.com/" class="facebook"><span></span><i>-</i>浙大冰虫</a></li>
+                <li><a href="javascript:void(0)" class="facebook"><span></span><i>-</i>创一创科技</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- copy-right -->
+<div class="w3agile_copy_right">
+    <div class="container">
+        <p>Copyright &copy; 2018.泸州绿荫环保科技有限公司，技术支持：成都创一创科技有限公司</p>
+    </div>
+</div>
+<!-- //copy-right -->
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.ajax({
+            url : "/about",
+            type : "post",
+            data : {count : 1},
+            dataType : "JSON",
+            success : function (result) {
+                if (200 == result.code) {
+                    $("#about").text(result.data.description);
+                }
+            }
+        });
+        $.ajax({
+            url : "/knowledge",
+            type : "post",
+            data : {count : 8},
+            dataType : "JSON",
+            success : function (result) {
+                if (200 == result.code) {
+                    var html = "";
+                    result.data.forEach(function (bean) {
+                        html += "<li><a href='/content/detail/' " + bean.id + ">" + bean.title + "</a> </li>";
+                    });
+                    $("#knowledge").append(html);
+                }
+            }
+        });
+    });
+</script>

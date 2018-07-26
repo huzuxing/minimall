@@ -55,11 +55,42 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/service', function (req, res, next) {
-    res.render('front/service', {title: 'Express'});
+    let uri = req.path;
+    contentService.getContentByChannel(uri, 1, 1).then(result => {
+        if (result && result.length > 0) {
+            result = result[0];
+        }
+        if (result && result.txt) {
+            result.txt = new Buffer(result.txt).toString("base64");
+        }
+        res.render('front/service', {data: result});
+    }).catch(ex => {
+        console.error(ex);
+        res.jsonp({code: CONSTANT.FAIL_CODE, msg: ex.message});
+    });
+
+
 });
 
 router.get('/case', function (req, res, next) {
-    res.render('front/case', {title: 'Express'});
+    var data = {};
+    contentService.getContentByChannel("/case/gov", 1,6).then(result => {
+        data.gov = result;
+        return contentService.getContentByChannel("/case/family", 1,6);
+    }).then(result => {
+        data.family = result;
+        return contentService.getContentByChannel("/case/car", 1,6);
+    }).then(result => {
+        data.car = result;
+        return contentService.getContentByChannel("/case/other", 1,6);
+    }).then(result => {
+        data.other = result;
+        res.render('front/case', {data: data});
+    }).catch(ex => {
+        console.error(ex);
+        res.jsonp({code: CONSTANT.FAIL_CODE, msg: ex.message});
+    })
+
 });
 
 router.get('/knowledge', function (req, res, next) {
@@ -96,7 +127,17 @@ router.get('/knowledge', function (req, res, next) {
 
 });
 router.get('/about', function (req, res, next) {
-    res.render('front/about', {title: 'Express'});
+    var data = {};
+    contentService.getContentByChannel("/about/copdescription", 1,1).then(result => {
+        if (result) {
+            result = result[0];
+            result.txt = new Buffer(result.txt).toString("base64");
+        }
+        res.render('front/about', {data: result});
+    }).catch(ex => {
+        console.error(ex);
+        res.jsonp({code: CONSTANT.FAIL_CODE, msg: ex.message});
+    })
 });
 
 router.post('/about', function (req, res, next) {
@@ -108,6 +149,17 @@ router.post('/about', function (req, res, next) {
         }
         data = result;
         res.jsonp({code: CONSTANT.SUCCESS_CODE,data: data});
+    }).catch(ex => {
+        console.error(ex);
+        res.jsonp({code: CONSTANT.FAIL_CODE, msg: ex.message});
+    });
+});
+
+
+router.post('/knowledge', function (req, res, next) {
+    let count = req.body.count || 8;
+    contentService.findContentByChannel("/knowledge", 1,count).then(result => {
+        res.jsonp({code: CONSTANT.SUCCESS_CODE,data: result});
     }).catch(ex => {
         console.error(ex);
         res.jsonp({code: CONSTANT.FAIL_CODE, msg: ex.message});
