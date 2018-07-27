@@ -89,15 +89,13 @@
 <div class="js-silder">
     <div class="silder-scroll">
         <div class="silder-main">
+            <% if(data && data.banner) {
+            data.banner.forEach(function (banner) { %>
             <div class="silder-main-img">
-                <img src="/images/1.jpg" alt="">
+                <img src="<%= banner.img%>" alt="<%= banner.title%>">
             </div>
-            <div class="silder-main-img">
-                <img src="/images/2.jpg" alt="">
-            </div>
-            <div class="silder-main-img">
-                <img src="/images/3.jpg" alt="">
-            </div>
+            <% })
+            } %>
         </div>
     </div>
 </div>
