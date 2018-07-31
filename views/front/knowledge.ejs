@@ -86,15 +86,13 @@
 <div class="js-silder">
     <div class="silder-scroll">
         <div class="silder-main">
+            <% if(data && data.banner) {
+            data.banner.forEach(function (banner) { %>
             <div class="silder-main-img">
-                <img src="/images/1.jpg" alt="">
+                <img src="<%= banner.img%>" alt="<%= banner.title%>">
             </div>
-            <div class="silder-main-img">
-                <img src="/images/2.jpg" alt="">
-            </div>
-            <div class="silder-main-img">
-                <img src="/images/3.jpg" alt="">
-            </div>
+            <% })
+            } %>
         </div>
     </div>
 </div>
@@ -104,8 +102,8 @@
 <div class="gallery">
     <div class="w3_gallery_grids">
         <ul class="case">
-            <% if (data) {
-            data.forEach(function (bean) { %>
+            <% if (data.knowledges) {
+            data.knowledges.forEach(function (bean) { %>
             <li>
                 <% if (bean.img && "" != bean.img) { %>
                     <div style="float: left;height : auto; width : 200px;">
