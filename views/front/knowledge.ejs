@@ -38,6 +38,55 @@
             padding: 5px;
             height: auto;
         }
+
+        .n-banner {
+            margin-bottom: 10px;
+        }
+
+        .w1100 {
+            width: 1100px;
+            margin: 0 auto;
+        }
+
+        .limit-about .hot {
+            height: 46px;
+        }
+
+        .w1100 {
+            width: 1100px;
+            margin: 0 auto;
+        }
+
+        .f-cb {
+            zoom: 1;
+        }
+        .hot .hot-tit {
+            width: 75px;
+            height: 22px;
+            border: 1px solid #ddd;
+            border-radius: 2px;
+            background: #df061d;
+            font-size: 14px;
+            color: #fff;
+            text-align: center;
+            line-height: 22px;
+            margin-top: 11px;
+            float: left;
+            border-radius: 6px;
+        }
+        .hot ul {
+            float: left;
+            margin-left: 15px;
+            padding: 12px 0;
+        }
+        .hot ul li {
+            width: 166px;
+            background: url(http://www.zhedabingchong.com/static/web/css/../img/limit-01.png) no-repeat right center;
+            text-align: center;
+            float: left;
+            height: 24px;
+            overflow: hidden;
+        }
     </style>
     <script type="text/javascript">
         jQuery(document).ready(function ($) {
@@ -82,19 +131,26 @@
     </div>
 </div>
 <!-- //header -->
+<div class="hot w1100 f-cb">
+    <div class="hot-tit">热点推荐</div>
+    <ul class="f-cb">
+        <li><a target="_black" title="除甲醛的方法" href="http://www.zhedabingchong.com/knowledge/detail/193.html?tuijian">除甲醛的方法</a>
+        </li>
+        <li><a target="_black" title="室内空气质量标准" href="http://www.zhedabingchong.com/knowledge/detail/190.html?tuijian">室内空气质量标准</a>
+        </li>
+        <li><a target="_black" title="室内空气治理"
+               href="http://www.zhedabingchong.com/services/zhili.html?tuijian">室内空气治理</a></li>
+        <li><a target="_black" title="甲醛的危害" href="http://www.zhedabingchong.com/knowledge/detail/255.html?tuijian">甲醛的危害</a>
+        </li>
+        <li><a target="_black" title="甲醛" href="http://www.zhedabingchong.com/knowledge/detail/194.html?tuijian">甲醛</a>
+        </li>
+        <li class="cur"><a target="_black" title="室内空气检测"
+                           href="http://www.zhedabingchong.com/services/jiance.html?tuijian">室内空气检测</a></li>
+    </ul>
+</div>
 <!-- banner -->
-<div class="js-silder">
-    <div class="silder-scroll">
-        <div class="silder-main">
-            <% if(data && data.banner) {
-            data.banner.forEach(function (banner) { %>
-            <div class="silder-main-img">
-                <img src="<%= banner.img%>" alt="<%= banner.title%>">
-            </div>
-            <% })
-            } %>
-        </div>
-    </div>
+<div class="n-banner w1100">
+    <img src="http://www.zhedabingchong.com/upload/2017/06/27/14985281671676nkfqh.jpg " alt="科普知识" title="科普知识">
 </div>
 <!-- //banner -->
 
@@ -106,13 +162,13 @@
             data.knowledges.forEach(function (bean) { %>
             <li>
                 <% if (bean.img && "" != bean.img) { %>
-                    <div style="float: left;height : auto; width : 200px;">
-                        <a href="/content/detail/<%= bean.id %>">
-                            <img src="<%= bean.img %>" alt=" " width="180px" height="180px"/>
-                        </a>
-                    </div>
+                <div style="float: left;height : auto; width : 200px;">
+                    <a href="/content/detail/<%= bean.id %>">
+                        <img src="<%= bean.img %>" alt=" " width="180px" height="180px"/>
+                    </a>
+                </div>
                 <% } %>
-                <div style="float: left;height : auto; width : <%=bean.img ? 780 : 980%>px;margin-left: 5px">
+                <div style="float: left;height : auto; width : <%= bean.img ? 780 : 980 %>px;margin-left: 5px">
                     <p style="padding-bottom: 10px;">
                         <a href="/content/detail/<%= bean.id %>">
                             <span style="font-size: 16px;font-weight: bold"><%= bean.title %></span>
@@ -170,7 +226,7 @@
 </div>
 
 <!-- footer -->
-<%include footer.ejs%>
+<% include footer.ejs %>
 <!-- //footer -->
 <!-- for bootstrap working -->
 <script src="/front/js/bootstrap.js"></script>
