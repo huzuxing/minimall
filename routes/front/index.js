@@ -6,6 +6,10 @@ const request = require('request');
 let config = require('../../config');
 const contentService = require('../../service/ContentService');
 const contentTxtService = require('../../service/ContentTxtService');
+var pg = require('pg');
+var app = express();
+var fs = require('fs');
+
 /**
  * 时间对象的格式化
  */
@@ -34,6 +38,21 @@ Date.prototype.format = function (fmt) {
         }
     return fmt;
 };
+
+router.get('/video', function (req, res) {
+    var time = new Date();
+    var videoName = req.query.name;
+    console.log("-------点击查询下载" + time.getFullYear() + "/" + time.getMonth() + "/" + time.getDate() + "/" + time.getHours() + "/" + time.getMinutes() + "/" + time.getSeconds() + "-------");
+    res.writeHead(200, {'Content-Type': 'video/mp4'});
+    var rs = fs.createReadStream(videoName);
+    rs.pipe(res);
+
+    rs.on('end', function () {
+        res.end();
+        console.log('end call');
+    });
+});
+
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -129,7 +148,7 @@ router.get('/knowledge', function (req, res, next) {
 router.get('/about', function (req, res, next) {
     var data = {};
     contentService.getContentByChannel("/about/copdescription", 1,1).then(result => {
-        if (result) {
+        if (result && result.length > 0) {
             result = result[0];
             result.txt = new Buffer(result.txt).toString("base64");
         }

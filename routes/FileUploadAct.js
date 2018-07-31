@@ -4,7 +4,6 @@ var router = express.Router();
 const CONSTANT = require('../common/Constant');
 const fs = require('fs');
 var path = require('path');
-var app = express();
 
 router.post('/', function (req, res) {
     if (!req.files || req.files.length <= 0) {
