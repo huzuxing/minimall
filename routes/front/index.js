@@ -6,7 +6,6 @@ const request = require('request');
 let config = require('../../config');
 const contentService = require('../../service/ContentService');
 const contentTxtService = require('../../service/ContentTxtService');
-var pg = require('pg');
 var app = express();
 var fs = require('fs');
 
@@ -141,7 +140,7 @@ router.get('/knowledge', function (req, res, next) {
         let d = result;
         if (d) {
             d.forEach(function (bean) {
-                bean.createTime = new Date(bean.create_time).format('yyyy-MM-dd hh:mm:ss');
+                bean.createTime = new Date(bean.create_time).format('yyyy-MM-dd');
             })
         }
         data.knowledges = d;

@@ -53,7 +53,7 @@
         }
 
         .w1100 {
-            width: 1100px;
+            width: 1000px;
             margin: 0 auto;
         }
 
@@ -86,6 +86,40 @@
             float: left;
             height: 24px;
             overflow: hidden;
+        }
+        .z-main {
+            width: 1000px;
+            margin-top: 10px;
+            background: #fff;
+            margin-left:auto;
+            margin-right:auto;
+        }
+        .z-main .bread {
+            padding: 3px 0 5px;
+            background: url(http://www.zhedabingchong.com/static/web/css/../img/limit-13.png) repeat-x;
+            background-size: 100% 98%;
+            width:98%;
+        }
+        .z-main .bread span {
+            height: 18px;
+            display: inline-block;
+            margin-left: 17px;
+            line-height: 18px;
+            background: url(http://www.zhedabingchong.com/static/web/css/../img/limit-12.png) no-repeat left center;
+            padding-left: 17px;
+            font-size: 14px;
+            color: #080808;
+            margin-right: 18px;
+        }
+        .z-main .bread a {
+            line-height: 18px;
+            height: 18px;
+            display: inline-block;
+            font-size: 14px;
+            color: #080808;
+            margin-right: 8px;
+            margin-left: 8px;
+            transition: color .3s;
         }
     </style>
     <script type="text/javascript">
@@ -132,28 +166,28 @@
 </div>
 <!-- //header -->
 <div class="hot w1100 f-cb">
-    <div class="hot-tit">热点推荐</div>
+    <div class="hot-tit">最热最新</div>
     <ul class="f-cb">
-        <li><a target="_black" title="除甲醛的方法" href="http://www.zhedabingchong.com/knowledge/detail/193.html?tuijian">除甲醛的方法</a>
-        </li>
-        <li><a target="_black" title="室内空气质量标准" href="http://www.zhedabingchong.com/knowledge/detail/190.html?tuijian">室内空气质量标准</a>
-        </li>
-        <li><a target="_black" title="室内空气治理"
-               href="http://www.zhedabingchong.com/services/zhili.html?tuijian">室内空气治理</a></li>
-        <li><a target="_black" title="甲醛的危害" href="http://www.zhedabingchong.com/knowledge/detail/255.html?tuijian">甲醛的危害</a>
-        </li>
-        <li><a target="_black" title="甲醛" href="http://www.zhedabingchong.com/knowledge/detail/194.html?tuijian">甲醛</a>
-        </li>
-        <li class="cur"><a target="_black" title="室内空气检测"
-                           href="http://www.zhedabingchong.com/services/jiance.html?tuijian">室内空气检测</a></li>
+        <% if (data.knowledges) {
+        data.knowledges.forEach(function (bean, index) {
+            if (index == 3) {
+                return
+            }
+        %>
+        <li><a target="_black" title="<%= bean.title %>" href="/content/detail/<%= bean.id %>"><%= bean.title.length > 8 ? bean.title.substring(0, 8) + "..." : bean.title %></a></li>
+        <% })} %>
     </ul>
 </div>
 <!-- banner -->
 <div class="n-banner w1100">
-    <img src="http://www.zhedabingchong.com/upload/2017/06/27/14985281671676nkfqh.jpg " alt="科普知识" title="科普知识">
+    <img src="http://www.zhedabingchong.com/upload/2017/06/27/14985281671676nkfqh.jpg " width="980" alt="科普知识" title="科普知识">
 </div>
 <!-- //banner -->
-
+<div class="z-main">
+    <div class="bread">
+        <span>当前位置：</span><a href="http://47.105.49.187/ ">泸州绿萌环保官网</a>&gt;<a href="/knowledge">科普知识</a>
+    </div>
+</div>
 <!-- gallery -->
 <div class="gallery">
     <div class="w3_gallery_grids">
@@ -168,7 +202,7 @@
                     </a>
                 </div>
                 <% } %>
-                <div style="float: left;height : auto; width : <%= bean.img ? 780 : 980 %>px;margin-left: 5px">
+                <div style="float: left;height : auto; width : <%= bean.img ? 780 : 980 %>px;">
                     <p style="padding-bottom: 10px;">
                         <a href="/content/detail/<%= bean.id %>">
                             <span style="font-size: 16px;font-weight: bold"><%= bean.title %></span>
